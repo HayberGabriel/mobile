@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145955267801",
+    "project_id": "cursocompletoflutter",
+    "storage_bucket": "cursocompletoflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145955267801:android:5880aaafedeb58572e4ac8",
+        "android_client_info": {
+          "package_name": "br.com.ciolfi.lojavirtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145955267801-64qb22au4v3g7134hsnm0dhd4h959acr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUHST2MWLS0u4ZQ4Im2Haw_mUXcnmYKfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145955267801-64qb22au4v3g7134hsnm0dhd4h959acr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
