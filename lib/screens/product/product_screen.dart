@@ -25,6 +25,7 @@ class _ProductScreenState extends State<ProductScreen> {
   final Product product;
   bool favorite = false;
   bool notification = false;
+  bool Teste = false;
   String size;
 
   @override
