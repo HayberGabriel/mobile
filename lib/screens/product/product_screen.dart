@@ -97,18 +97,6 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                   alignment:Alignment.center,
                 ),
-                /*Container(
-                    padding: EdgeInsets.only(
-                        right: product.hasStock ? 12 : 11,
-                        top: product.hasStock ? 15.0 : 16),
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      product.hasStock ? 'Disponível' : 'Indisponível',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300,
-                          fontSize: product.hasStock ? 25.0 : 22.58),
-                    )),*/
               ]),
             ),
             Padding(
