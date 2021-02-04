@@ -24,9 +24,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   final Product product;
   bool favorite = false;
-  bool teste2=false;
   bool notification = false;
-  b
   String size;
 
   @override
@@ -90,19 +88,15 @@ class _ProductScreenState extends State<ProductScreen> {
                         : Colors.red.withOpacity(0.75),
                     borderRadius: BorderRadius.circular(30),
                   ),
+                  alignment: Alignment.center,
+                  child: Text(
+                product.hasStock ? 'Disponível' : 'Indisponível',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      fontSize: product.hasStock ? 25.0 : 22.58),
                 ),
-                Container(
-                    padding: EdgeInsets.only(
-                        right: product.hasStock ? 12 : 11,
-                        top: product.hasStock ? 15.0 : 16),
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      product.hasStock ? 'Disponível' : 'Indisponível',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300,
-                          fontSize: product.hasStock ? 25.0 : 22.58),
-                    )),
+                ),
               ]),
             ),
             Padding(
