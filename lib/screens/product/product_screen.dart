@@ -244,53 +244,55 @@ class _ProductScreenState extends State<ProductScreen> {
                     Consumer2<UserManager, Product>(
                       builder: (_, userManager, product, __) {
                         return Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Builder(builder: (context) {
                                 return Padding(
-                                  padding: EdgeInsets.only(right: 50),
-                                  child: IconButton(
-                                      icon: Icon(favorite
-                                          ? Icons.favorite
-                                          : Icons.favorite_border),
-                                      color: Colors.black,
-                                      iconSize: 45,
-                                      onPressed: () {
-                                        if (favorite == false) {
-                                          final snack = SnackBar(
-                                            content: Text(
-                                              'Peça adicionada aos favoritos',
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            backgroundColor: Colors.black,
-                                            duration: Duration(seconds: 2),
-                                          );
-                                          Scaffold.of(context)
-                                              .showSnackBar(snack);
-                                        } else {
-                                          final snack = SnackBar(
-                                            content: Text(
-                                              'Peça removida dos favoritos',
-                                              style: TextStyle(
-                                                color: Colors.white,
+                                  padding: EdgeInsets.only(left: 10 , right: 26),
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    alignment: Alignment.center,
+                                    child: IconButton(
+                                        icon: Icon(favorite
+                                            ? Icons.favorite
+                                            : Icons.favorite_border),
+                                        color: Colors.black,
+                                        iconSize: 42,
+                                        onPressed: () {
+                                          if (favorite == false) {
+                                            final snack = SnackBar(
+                                              content: Text(
+                                                'Peça adicionada aos favoritos',
+                                                style: TextStyle(
+                                                    color: Colors.white),
                                               ),
-                                            ),
-                                            backgroundColor: Colors.black,
-                                            duration: Duration(seconds: 2),
-                                          );
-                                          Scaffold.of(context)
-                                              .showSnackBar(snack);
-                                        }
-                                        setState(() {
-                                          favorite = !favorite;
-                                        });
-                                      }),
+                                              backgroundColor: Colors.black,
+                                              duration: Duration(seconds: 2),
+                                            );
+                                            Scaffold.of(context)
+                                                .showSnackBar(snack);
+                                          } else {
+                                            final snack = SnackBar(
+                                              content: Text(
+                                                'Peça removida dos favoritos',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              backgroundColor: Colors.black,
+                                              duration: Duration(seconds: 2),
+                                            );
+                                            Scaffold.of(context)
+                                                .showSnackBar(snack);
+                                          }
+                                          setState(() {
+                                            favorite = !favorite;
+                                          });
+                                        }),
+                                  ),
                                 );
                               }),
-                              SizedBox(
-                                height: 50,
-                                width: 215,
+                              Expanded(
                                 child: RaisedButton(
                                   onPressed: product.selectedSize != null
                                       ? () {
@@ -312,7 +314,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     userManager.isLoggedIn
                                         ? 'Reservar'
                                         : 'Entre para Comprar',
-                                    style: const TextStyle(fontSize: 20),
+                                    style: const TextStyle(fontSize: 18),
                                   ),
                                 ),
                               ),
@@ -323,39 +325,41 @@ class _ProductScreenState extends State<ProductScreen> {
                     Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                       Builder(builder: (context) {
                         return Padding(
-                          padding: EdgeInsets.only(right: 50),
-                          child: IconButton(
-                              icon: Icon(notification ? Icons.notifications_active : Icons.notifications_none),
-                              color: Colors.black,
-                              iconSize: 45,
-                              onPressed: () {
-                                if(notification == false){
-                                  final snack = SnackBar(content: Text(
-                                    'Você será notificado quando a peça estiver disponível',
-                                    style: TextStyle(color: Colors.white),),
-                                    backgroundColor: Colors.black,
-                                    duration: Duration(seconds: 2),
+                          padding: EdgeInsets.only(left: 10 , right: 26),
+                          child: Container(
+                            color: Colors.transparent,
+                            alignment: Alignment.center,
+                            child: IconButton(
+                                icon: Icon(notification ? Icons.notifications_active : Icons.notifications_none),
+                                color: Colors.black,
+                                iconSize: 42,
+                                onPressed: () {
+                                  if(notification == false){
+                                    final snack = SnackBar(content: Text(
+                                      'Você será notificado quando a peça estiver disponível',
+                                      style: TextStyle(color: Colors.white),),
+                                      backgroundColor: Colors.black,
+                                      duration: Duration(seconds: 2),
+                                    );
+                                    Scaffold.of(context).showSnackBar(snack);
+                                  }else {
+                                    final snack = SnackBar(content: Text(
+                                      'Você não será mais notificado',
+                                      style: TextStyle(color: Colors.white),),
+                                      backgroundColor: Colors.black,
+                                      duration: Duration(seconds: 2),
+                                    );
+                                    Scaffold.of(context).showSnackBar(snack);
+                                  }
+                                  setState(() {
+                                    notification = !notification;
+                                  }
                                   );
-                                  Scaffold.of(context).showSnackBar(snack);
-                                }else {
-                                  final snack = SnackBar(content: Text(
-                                    'Você não será mais notificado',
-                                    style: TextStyle(color: Colors.white),),
-                                    backgroundColor: Colors.black,
-                                    duration: Duration(seconds: 2),
-                                  );
-                                  Scaffold.of(context).showSnackBar(snack);
-                                }
-                                setState(() {
-                                  notification = !notification;
-                                }
-                                );
-                              }),
+                                }),
+                          ),
                         );}
                       ),
-                      SizedBox(
-                      height: 50,
-                      width: 215,
+                      Expanded(
                         child: RaisedButton(
                           onPressed: null,
                           child: Text('Indisponível',style: const TextStyle(fontSize: 20),),

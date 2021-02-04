@@ -43,13 +43,13 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
                             'Pedidos de ${ordersManager.userFilter.name}',
                             style: TextStyle(
                               fontWeight: FontWeight.w800,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                         CustomIconButton(
                           iconData: Icons.close,
-                          color: Colors.white,
+                          color: Colors.black,
                           onTap: (){
                             ordersManager.setUserFilter(null);
                           },

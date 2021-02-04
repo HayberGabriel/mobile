@@ -137,7 +137,7 @@ class CheckoutScreen extends StatelessWidget {
     Text(
     'Processando sua Reserva...',
     style: TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontWeight: FontWeight.w800,
     fontSize: 16
     ),
