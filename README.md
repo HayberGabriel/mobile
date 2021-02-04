@@ -1,1 +1,1 @@
-# Projeto POO
+# Projeto Loja Virtual POO
