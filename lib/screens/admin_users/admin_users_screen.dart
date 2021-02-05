@@ -24,13 +24,13 @@ class AdminUsersScreen extends StatelessWidget {
                   adminUsersManager.users[index].name,
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
-                      color: Colors.white
+                      color: Colors.black
                   ),
                 ),
                 subtitle: Text(
                   adminUsersManager.users[index].email,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 onTap: (){
@@ -42,7 +42,7 @@ class AdminUsersScreen extends StatelessWidget {
               );
             },
             highlightTextStyle: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 20
             ),
             indexedHeight: (index) => 80,
