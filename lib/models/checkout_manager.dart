@@ -4,7 +4,7 @@ import 'package:lojavirtual/models/cart_manager.dart';
 import 'package:lojavirtual/models/credit_card.dart';
 import 'package:lojavirtual/models/order.dart';
 import 'package:lojavirtual/models/product.dart';
-import 'package:lojavirtual/services/cielo_payment.dart';
+
 /*
 class CheckoutManager extends ChangeNotifier {
 
