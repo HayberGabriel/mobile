@@ -14,21 +14,6 @@ class HomeScreen extends StatelessWidget {
       drawer: CustomDrawer(),
       body: Stack(
         children: <Widget>[
-          /*
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: const [
-                  Color.fromARGB(255, 211, 118, 130),
-                  Color.fromARGB(255, 253, 181, 168)
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter
-              )
-            ),
-          ),
-          */
-
           CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(

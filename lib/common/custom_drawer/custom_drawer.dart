@@ -37,13 +37,12 @@ class CustomDrawer extends StatelessWidget {
               title: 'Desejos',
               page: 4,
             ),
-*/
+            */
             Consumer<UserManager>(
               builder: (_, userManager, __) {
                 if (userManager.adminEnabled) {
                   return Column(
                     children: <Widget>[
-                      const Divider(),
                       DrawerTile(
                         iconData: Icons.person,
                         title: 'Usuários',
