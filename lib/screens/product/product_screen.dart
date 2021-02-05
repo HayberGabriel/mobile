@@ -88,6 +88,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         : Colors.red.withOpacity(0.75),
                     borderRadius: BorderRadius.circular(30),
                   ),
+
                   alignment: Alignment.center,
                   child: Text(
                 product.hasStock ? 'Disponível' : 'Indisponível',
