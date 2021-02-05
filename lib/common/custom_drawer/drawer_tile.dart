@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/page_manager.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +14,10 @@ class DrawerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int curPage = context.watch<PageManager>().page;
-    final Color primaryColor = Colors.white;
+    final Color primaryColor = Colors.black;
 
     return Material(
-      color: curPage == page ? Colors.black : Colors.transparent,
       child: InkWell(
-        splashColor: Colors.grey,
         onTap: (){
           context.read<PageManager>().setPage(page);
         },
@@ -29,17 +28,17 @@ class DrawerTile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Icon(
-                  iconData,
-                  size: 32,
-                  color: curPage == page ? primaryColor : Colors.black,
+                    iconData,
+                    size: 32,
+                    color: curPage == page ? Color.fromARGB(255, 4, 125, 141) : Colors.black
                 ),
               ),
               Text(
                 title,
                 style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: curPage == page ? primaryColor : Colors.black
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: curPage == page ? Color.fromARGB(255, 4, 125, 141) : Colors.black
                 ),
               )
             ],
