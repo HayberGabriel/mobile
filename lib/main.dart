@@ -19,9 +19,7 @@ import 'package:lojavirtual/screens/login/login_screen.dart';
 import 'package:lojavirtual/screens/product/product_screen.dart';
 import 'package:lojavirtual/screens/select_product/select_product_screen.dart';
 import 'package:lojavirtual/screens/signup/signup_screen.dart';
-import 'package:lojavirtual/test/test_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'screens/base/base_screen.dart';
 
 void main() {

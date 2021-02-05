@@ -13,7 +13,6 @@ import 'package:lojavirtual/screens/orders/orders_screen.dart';
 import 'package:lojavirtual/screens/products/products_screen.dart';
 import 'package:lojavirtual/screens/stores/stores_screen.dart';
 import 'package:lojavirtual/screens/wishes/wishes_screen.dart';
-import 'package:lojavirtual/test/test_screen.dart';
 import 'package:provider/provider.dart';
 
 class BaseScreen extends StatefulWidget {
