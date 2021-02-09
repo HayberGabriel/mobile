@@ -18,20 +18,26 @@ class CustomDrawer extends StatelessWidget {
               page: 0,
             ),
             DrawerTile(
+              iconData: Icons.person_pin,
+              title: 'Perfil',
+              page: 1,
+            ),
+            DrawerTile(
               iconData: Icons.list,
               title: 'Produtos',
-              page: 1,
+              page: 2,
             ),
             DrawerTile(
               iconData: Icons.playlist_add_check,
               title: 'Meus Pedidos',
-              page: 2,
+              page: 3,
             ),
             DrawerTile(
               iconData: Icons.store,
               title: 'Lojas',
-              page: 3,
+              page: 4,
             ),
+
             /*DrawerTile(
               iconData: Icons.favorite,
               title: 'Desejos',
@@ -46,12 +52,12 @@ class CustomDrawer extends StatelessWidget {
                       DrawerTile(
                         iconData: Icons.person,
                         title: 'Usuários',
-                        page: 4,
+                        page: 5,
                       ),
                       DrawerTile(
                         iconData: Icons.list_alt,
                         title: 'Pedidos',
-                        page: 5,
+                        page: 6,
                       ),
                     ],
                   );

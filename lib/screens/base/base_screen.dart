@@ -11,6 +11,7 @@ import 'package:lojavirtual/screens/admin_users/admin_users_screen.dart';
 import 'package:lojavirtual/screens/home/home_screen.dart';
 import 'package:lojavirtual/screens/orders/orders_screen.dart';
 import 'package:lojavirtual/screens/products/products_screen.dart';
+import 'package:lojavirtual/screens/profile/profile_screen.dart';
 import 'package:lojavirtual/screens/stores/stores_screen.dart';
 import 'package:lojavirtual/screens/wishes/wishes_screen.dart';
 import 'package:provider/provider.dart';
@@ -79,6 +80,7 @@ class _BaseScreenState extends State<BaseScreen> {
             physics: const NeverScrollableScrollPhysics(),
             children: <Widget>[
               HomeScreen(),
+              ProfileScreen(),
               ProductsScreen(),
               OrdersScreen(),
               StoresScreen(),
