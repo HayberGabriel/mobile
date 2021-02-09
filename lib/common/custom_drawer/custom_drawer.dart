@@ -10,64 +10,56 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: ListView(
-          children: <Widget>[
-            CustomDrawerHeader(),
-            DrawerTile(
-              iconData: Icons.home,
-              title: 'Início',
-              page: 0,
-            ),
-            DrawerTile(
-              iconData: Icons.person_pin,
-              title: 'Perfil',
-              page: 1,
-            ),
-            DrawerTile(
-              iconData: Icons.list,
-              title: 'Produtos',
-              page: 2,
-            ),
-            DrawerTile(
-              iconData: Icons.playlist_add_check,
-              title: 'Meus Pedidos',
-              page: 3,
-            ),
-            DrawerTile(
-              iconData: Icons.store,
-              title: 'Lojas',
-              page: 4,
-            ),
-
-            /*DrawerTile(
-              iconData: Icons.favorite,
-              title: 'Desejos',
-              page: 4,
-            ),
-            */
-            Consumer<UserManager>(
-              builder: (_, userManager, __) {
-                if (userManager.adminEnabled) {
-                  return Column(
-                    children: <Widget>[
-                      DrawerTile(
-                        iconData: Icons.person,
-                        title: 'Usuários',
-                        page: 5,
-                      ),
-                      DrawerTile(
-                        iconData: Icons.list_alt,
-                        title: 'Pedidos',
-                        page: 6,
-                      ),
-                    ],
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            )
-          ],
+      children: <Widget>[
+        CustomDrawerHeader(),
+        DrawerTile(
+          iconData: Icons.home,
+          title: 'Início',
+          page: 0,
+        ),
+        DrawerTile(
+          iconData: Icons.person_pin,
+          title: 'Perfil',
+          page: 1,
+        ),
+        DrawerTile(
+          iconData: Icons.list,
+          title: 'Produtos',
+          page: 2,
+        ),
+        DrawerTile(
+          iconData: Icons.playlist_add_check,
+          title: 'Meus Pedidos',
+          page: 3,
+        ),
+        DrawerTile(
+          iconData: Icons.store,
+          title: 'Lojas',
+          page: 4,
+        ),
+        Consumer<UserManager>(
+          builder: (_, userManager, __) {
+            if (userManager.adminEnabled) {
+              return Column(
+                children: <Widget>[
+                  DrawerTile(
+                    iconData: Icons.person,
+                    title: 'Usuários',
+                    page: 5,
+                  ),
+                  DrawerTile(
+                    iconData: Icons.list_alt,
+                    title: 'Pedidos',
+                    page: 6,
+                  ),
+                ],
+              );
+            } else {
+              return Container();
+            }
+          },
         )
-    );
+      ],
+    ));
   }
 }

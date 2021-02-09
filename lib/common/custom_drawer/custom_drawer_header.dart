@@ -10,7 +10,7 @@ class CustomDrawerHeader extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(32, 24, 16, 8),
       height: 180,
       child: Consumer<UserManager>(
-        builder: (_, userManager, __){
+        builder: (_, userManager, __) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -32,8 +32,8 @@ class CustomDrawerHeader extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: (){
-                  if(userManager.isLoggedIn){
+                onTap: () {
+                  if (userManager.isLoggedIn) {
                     context.read<PageManager>().setPage(0);
                     userManager.signOut();
                   } else {
@@ -41,9 +41,7 @@ class CustomDrawerHeader extends StatelessWidget {
                   }
                 },
                 child: Text(
-                  userManager.isLoggedIn
-                      ? 'Sair'
-                      : 'Entre ou cadastre-se >',
+                  userManager.isLoggedIn ? 'Sair' : 'Entre ou cadastre-se >',
                   style: TextStyle(
                     color: const Color.fromARGB(255, 4, 120, 159),
                     fontSize: 16,
