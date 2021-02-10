@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lojavirtual/common/login_card.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -21,39 +22,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<UserManager>(
-        builder: (_, userManager, __){
-      return Scaffold(
-          drawer: CustomDrawer(),
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text(
-              'Perfil', style: TextStyle(color: Colors.white),
-            ),
-            actions: [
-              Builder(builder: (context){
-                return IconButton(
-                    icon: const Icon(
-                      Icons.save,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    onPressed: (){
-                      showDialog(
-                          context: context,
-                          builder: (context)=> AlertDialog(
-                        title: Text('Tem certeza que deseja alterar seus dados?'),
-                        content: Text('A ação não poderá ser desfeita'),
-                        actions: [
-                          FlatButton(onPressed: (){
-                            showsnackbar = true;
-                            Navigator.pop(context);
-                          },
-                              child: Text('Sim')),
-                          FlatButton(onPressed: (){Navigator.pop(context);}, child: Text('Cancelar'))
-                        ],
-                          ));
-                     /* if(showsnackbar == true) {
+    return Scaffold(
+        drawer: CustomDrawer(),
+    appBar: AppBar(
+    centerTitle: true,
+    title: const Text(
+    'Perfil', style: TextStyle(color: Colors.white),
+    ),
+    /* if(showsnackbar == true) {
                         const snack = SnackBar(content: Text(
                         'Dados salvos com sucesso!',
                         style: TextStyle(color: Colors.white),),
@@ -62,11 +38,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       );
                       Scaffold.of(context).showSnackBar(snack);
                       }*/
-                    });}
-                    ),
-              ],
-          ),
-          body: GestureDetector(
+
+    ),
+    body:
+      Consumer<UserManager>(
+        builder: (_, userManager, __){
+          if(userManager.user == null){
+            return LoginCard();
+          }
+      return  GestureDetector(
             onTap: (){
               FocusScope.of(context).unfocus();
             },
@@ -163,9 +143,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onChanged: (text){},
                         obscureText: showPassword,
                       ),
+                      const SizedBox(height: 30,),
+                      SizedBox(
+                        width: double.infinity,
+                        child: RaisedButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            padding: EdgeInsets.all(15.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            color: Theme.of(context).primaryColor,
+                            textColor: Colors.white,
+                            onPressed: (){
+                              showDialog(
+                                  context: context,
+                                  builder: (context)=> AlertDialog(
+                                    title: Text('Tem certeza que deseja alterar seus dados?'),
+                                    content: Text('A ação não poderá ser desfeita'),
+                                    actions: [
+                                      FlatButton(onPressed: (){
+                                        showsnackbar = true;
+                                        Navigator.pop(context);
+                                      },
+                                          child: Text('Sim')),
+                                      FlatButton(onPressed: (){Navigator.pop(context);}, child: Text('Cancelar'))
+                                    ],
+                                  ));
+                            },
+                            child:
+                            const Text(
+                              'Atualizar Dados',
+                              style: TextStyle(
+                                letterSpacing: 1.5,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                            ),
+                      ),
                     ]
                 )),
-          ));
-  });
+          );
+  }),
+    );
   }
 }
