@@ -14,7 +14,6 @@ class DrawerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int curPage = context.watch<PageManager>().page;
-    final Color primaryColor = Colors.black;
 
     return Material(
       child: InkWell(

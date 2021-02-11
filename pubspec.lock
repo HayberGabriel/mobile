@@ -113,20 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  cpf_cnpj_validator:
-    dependency: "direct main"
-    description:
-      name: cpf_cnpj_validator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.5"
-  credit_card_type_detector:
-    dependency: "direct main"
-    description:
-      name: credit_card_type_detector
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
   crypto:
     dependency: transitive
     description:
@@ -246,13 +232,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.6"
-  flip_card:
-    dependency: "direct main"
-    description:
-      name: flip_card
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.4"
   flushbar:
     dependency: "direct main"
     description:
