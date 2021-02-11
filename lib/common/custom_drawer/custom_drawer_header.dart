@@ -3,7 +3,12 @@ import 'package:lojavirtual/models/page_manager.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
 
-class CustomDrawerHeader extends StatelessWidget {
+class CustomDrawerHeader extends StatefulWidget {
+  @override
+  _CustomDrawerHeaderState createState() => _CustomDrawerHeaderState();
+}
+
+class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
