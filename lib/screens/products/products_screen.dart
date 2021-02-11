@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/bottom_nav_bar.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/models/product_manager.dart';
 import 'package:lojavirtual/models/user_manager.dart';
@@ -102,6 +103,7 @@ class ProductsScreen extends StatelessWidget {
         },
         child: Icon(Icons.shopping_cart),
       ),
+      bottomNavigationBar: BottomNavBar(page: 1),
     );
   }
 }

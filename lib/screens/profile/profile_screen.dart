@@ -228,7 +228,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ])),
         );
       }),
-      bottomNavigationBar: BottomNavBar(page: 1),
     );
   }
 }
