@@ -31,6 +31,7 @@ class StoresScreen extends StatelessWidget {
           );
         },
       ),
+      bottomNavigationBar: BottomNavBar(page: 3),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/bottom_nav_bar.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/models/admin_orders_manager.dart';
 import 'package:lojavirtual/models/admin_users_manager.dart';
@@ -37,7 +38,8 @@ class AdminUsersScreen extends StatelessWidget {
                   context.read<AdminOrdersManager>().setUserFilter(
                     adminUsersManager.users[index]
                   );
-                  context.read<PageManager>().setPage(5);
+                  Navigator.pop(context);
+                  context.read<PageManager>().setPage(6);
                 },
               );
             },
@@ -51,6 +53,7 @@ class AdminUsersScreen extends StatelessWidget {
           );
         },
       ),
+
     );
   }
 }

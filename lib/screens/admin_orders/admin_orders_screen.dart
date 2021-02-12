@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class AdminOrdersScreen extends StatefulWidget {
-
   @override
   _AdminOrdersScreenState createState() => _AdminOrdersScreenState();
 }
@@ -26,14 +25,14 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
         centerTitle: true,
       ),
       body: Consumer<AdminOrdersManager>(
-        builder: (_, ordersManager, __){
+        builder: (_, ordersManager, __) {
           final filteredOrders = ordersManager.filteredOrders;
 
           return SlidingUpPanel(
             controller: panelController,
             body: Column(
               children: <Widget>[
-                if(ordersManager.userFilter != null)
+                if (ordersManager.userFilter != null)
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 2),
                     child: Row(
@@ -50,14 +49,14 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
                         CustomIconButton(
                           iconData: Icons.close,
                           color: Colors.black,
-                          onTap: (){
+                          onTap: () {
                             ordersManager.setUserFilter(null);
                           },
                         )
                       ],
                     ),
                   ),
-                if(filteredOrders.isEmpty)
+                if (filteredOrders.isEmpty)
                   Expanded(
                     child: EmptyCard(
                       title: 'Nenhuma venda realizada!',
@@ -68,15 +67,16 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
                   Expanded(
                     child: ListView.builder(
                         itemCount: filteredOrders.length,
-                        itemBuilder: (_, index){
+                        itemBuilder: (_, index) {
                           return OrderTile(
                             filteredOrders[index],
                             showControls: true,
                           );
-                        }
-                    ),
+                        }),
                   ),
-                const SizedBox(height: 120,),
+                const SizedBox(
+                  height: 120,
+                ),
               ],
             ),
             minHeight: 40,
@@ -85,8 +85,8 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
-                    if(panelController.isPanelClosed){
+                  onTap: () {
+                    if (panelController.isPanelClosed) {
                       panelController.open();
                     } else {
                       panelController.close();
@@ -109,17 +109,14 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: Status.values.map((s){
+                    children: Status.values.map((s) {
                       return CheckboxListTile(
                         title: Text(Order.getStatusText(s)),
                         dense: true,
                         activeColor: Theme.of(context).primaryColor,
                         value: ordersManager.statusFilter.contains(s),
-                        onChanged: (v){
-                          ordersManager.setStatusFilter(
-                            status: s,
-                            enabled: v
-                          );
+                        onChanged: (v) {
+                          ordersManager.setStatusFilter(status: s, enabled: v);
                         },
                       );
                     }).toList(),

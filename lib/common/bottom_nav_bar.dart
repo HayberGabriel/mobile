@@ -12,6 +12,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: page,
         onTap: (page) {
           context.read<PageManager>().setPage(page);
@@ -34,7 +35,15 @@ class BottomNavBar extends StatelessWidget {
               title: Text(
                 "Meus Pedidos",
                 style: TextStyle(fontWeight: FontWeight.bold),
-              )),
+              ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            title: Text(
+              "Lojas",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
         ],
       ),
     );
