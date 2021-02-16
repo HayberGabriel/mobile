@@ -59,7 +59,7 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
                 if (filteredOrders.isEmpty)
                   Expanded(
                     child: EmptyCard(
-                      title: 'Nenhuma venda realizada!',
+                      title: 'Nenhum pedido feito!',
                       iconData: Icons.border_clear,
                     ),
                   )
