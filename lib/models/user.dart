@@ -6,13 +6,16 @@ import 'package:lojavirtual/models/address.dart';
 
 class User {
 
-  User({this.email, this.password, this.name, this.id});
+  User({this.email, this.password, this.name, this.id, this.address, this.cpf, this.key, this.cnpj});
 
   User.fromDocument(DocumentSnapshot document){
     id = document.documentID;
     name = document.data['name'] as String;
     email = document.data['email'] as String;
     cpf = document.data['cpf'] as String;
+    telefone = document.data['telefone'] as String;
+    cnpj = document.data['cnpj'] as String;
+    key = document.data['key'] as String;
     if(document.data.containsKey('address')){
       address = Address.fromMap(
           document.data['address'] as Map<String, dynamic>);
@@ -22,10 +25,15 @@ class User {
   String id;
   String name;
   String email;
+  String telefone;
+  String cnpj;
   String cpf;
+  String key;
   String password;
 
   String confirmPassword;
+
+
 
   bool admin = false;
 
@@ -39,6 +47,8 @@ class User {
 
   CollectionReference get tokensReference =>
       firestoreRef.collection('tokens');
+
+
 
   Future<void> saveData() async {
     await firestoreRef.setData(toMap());

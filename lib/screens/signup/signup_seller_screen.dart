@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/helpers/validators.dart';
+import 'package:lojavirtual/models/address.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
-import 'package:lojavirtual/screens/signup/signup_seller_screen.dart';
 import 'package:lojavirtual/utilities/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:validadores/Validador.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpSellerScreen extends StatefulWidget {
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _SignUpSellerScreenState createState() => _SignUpSellerScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -33,15 +33,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Theme(
             data: ThemeData(unselectedWidgetColor: Colors.black),
             child: Checkbox(
-              value: _ClientCheck,
+              value: !_ClientCheck,
               checkColor: Colors.green,
               activeColor: Colors.black,
               onChanged: (value) {
-                if (_ClientCheck == false) {
-                  setState(() {
-                    _ClientCheck = value;
-                  });
-                }
+                setState(() {
+                  _ClientCheck = value;
+                  if(_ClientCheck == true){
+                    Navigator.pop(context);
+                  }
+                });
               },
             ),
           ),
@@ -56,19 +57,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Theme(
             data: ThemeData(unselectedWidgetColor: Colors.black),
             child: Checkbox(
-              value: !_ClientCheck,
+              value: _ClientCheck,
               checkColor: Colors.green,
               activeColor: Colors.black,
               onChanged: (value) {
-                setState(() {
-                  _ClientCheck = value;
-                  if(_ClientCheck == true){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpSellerScreen()),
-                    );
-                  }
-                });
+                if(_ClientCheck == false){
+                  setState(() {
+                    _ClientCheck = value;
+                  });
+                }
               },
             ),
           ),
@@ -97,6 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: const EdgeInsets.all(16),
                   shrinkWrap: true,
                   children: <Widget>[
+                    SizedBox(height: 40.0),
                     _buildClientCheckbox(),
                     SizedBox(height: 30.0),
                     TextFormField(
@@ -155,12 +153,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintText: 'Telefone',
                         hintStyle: kHintTextStyle,
                       ),
-                      keyboardType: TextInputType.phone,
                       enabled: !userManager.loading,
-                      maxLength: 10,
-                      validator: _validarCelular,
+                      validator: (telefone) {
+                        if (telefone.isEmpty)
+                          return 'Campo obrigatório';
+                        else if (!telefoneValid(telefone))
+                          return 'Telefone inválido';
+                        return null;
+                      },
                       onSaved: (telefone) => user.telefone = telefone,
                     ),
+                    const SizedBox(height: 16,),
                     TextFormField(
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
@@ -182,6 +185,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             .valido(value,clearNoNumber: true);
                       },
                       onSaved: (cpf) => user.cpf = cpf,
+                    ),
+                    const SizedBox(height: 16,),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
+                        prefixIcon: Icon(
+                          Icons.home,
+                          color: Colors.black,
+                        ),
+                        hintText: 'Endereço',
+                        hintStyle: kHintTextStyle,
+                      ),
+                      enabled: !userManager.loading,
+                      validator: (address) {
+                        if (address.isEmpty)
+                          return 'Campo obrigatório';
+                        else if (!addressValid(address))
+                          return 'Endereço inválido';
+                        return null;
+                      },
+                      onSaved: (address) => user.address = Address as Address,
+                    ),
+                    const SizedBox(height: 16,),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
+                        prefixIcon: Icon(
+                          Icons.business,
+                          color: Colors.black,
+                        ),
+                        hintText: 'CNPJ (opcional)',
+                        hintStyle: kHintTextStyle,
+                      ),
+                      enabled: !userManager.loading,
+                      onSaved: (cnpj) => user.cnpj = cnpj,
                     ),
                     const SizedBox(height: 16,),
                     TextFormField(
@@ -226,6 +264,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         return null;
                       },
                       onSaved: (pass) => user.confirmPassword = pass,
+                    ),
+                    const SizedBox(height: 16,),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
+                        prefixIcon: Icon(
+                          Icons.vpn_key,
+                          color: Colors.black,
+                        ),
+                        hintText: 'Chave de Acesso',
+                        hintStyle: kHintTextStyle,
+                      ),
+                      enabled: !userManager.loading,
+                      validator: (key) {
+                        if (key.isEmpty)
+                          return 'Campo obrigatório';
+                        else if (!keyValid(key))
+                          return 'Chave de Acesso inválida';
+                        return null;
+                      },
+                      onSaved: (key) => user.key = key,
                     ),
                     const SizedBox(height: 16,),
                     RaisedButton(
@@ -293,18 +352,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-  String _validarCelular(String value) {
-    String pattern = r'(^[0-9]*$)';
-    RegExp regExp = new RegExp(pattern);
-    if (value.length == 0) {
-      return "Campo obrigatório";
-    } else if(value.length != 10){
-      return "O número deve ter 10 dígitos";
-    }else if (!regExp.hasMatch(value)) {
-      return "O número só deve conter dígitos";
-    }
-    return null;
-  }
+
+  bool addressValid(String address) {}
+
+  bool keyValid(String key) {}
+  bool telefoneValid(String telefone) {}
 
 }
 
