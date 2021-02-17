@@ -141,6 +141,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   keyboardType: TextInputType.emailAddress,
                   enabled: !userManager.loading,
                 ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Telefone',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    hintText: '(85)99999-9999',
+                    hintStyle: TextStyle(color: Colors.black),
+                    icon: Icon(Icons.phone_android),
+                  ),
+                  keyboardType: TextInputType.phone,
+                  enabled: !userManager.loading,
+                ),
+
 
                 const SizedBox(
                   height: 30,

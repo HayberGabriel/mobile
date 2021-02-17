@@ -23,7 +23,7 @@ class OrdersScreen extends StatelessWidget {
           }
           if(ordersManager.orders.isEmpty){
             return EmptyCard(
-              title: 'Nenhuma compra encontrada!',
+              title: 'Nenhum pedido encontrado!',
               iconData: Icons.border_clear,
             );
           }
