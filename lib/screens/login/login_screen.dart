@@ -1,8 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                         child: Carousel(
                           images: [
                             NetworkImage(
-                                'https://pbs.twimg.com/media/EuT1XhfXEAUD8zl?format=png&name=240x240'),
+                                'https://pbs.twimg.com/media/EtrK_AXWgAEcZ8m?format=png&name=small'),
                           ],
                           dotSize: 0.0,
                           dotBgColor: Colors.transparent,

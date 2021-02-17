@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/helpers/validators.dart';
-import 'package:lojavirtual/models/address.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/utilities/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:validadores/Validador.dart';
 
 class SignUpSellerScreen extends StatefulWidget {
   @override
@@ -153,40 +151,12 @@ class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
                         hintText: 'Telefone',
                         hintStyle: kHintTextStyle,
                       ),
+                      keyboardType: TextInputType.phone,
                       enabled: !userManager.loading,
-                      validator: (telefone) {
-                        if (telefone.isEmpty)
-                          return 'Campo obrigatório';
-                        else if (!telefoneValid(telefone))
-                          return 'Telefone inválido';
-                        return null;
-                      },
+                      maxLength: 10,
+                      validator: _validarCelular,
                       onSaved: (telefone) => user.telefone = telefone,
                     ),
-                    const SizedBox(height: 16,),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
-                        prefixIcon: Icon(
-                          Icons.comment,
-                          color: Colors.black,
-                        ),
-                        hintText: 'CPF',
-                        hintStyle: kHintTextStyle,
-                      ),
-                      enabled: !userManager.loading,
-                      validator: (value) {
-                        // Aqui entram as validações
-                        return Validador()
-                            .add(Validar.CPF, msg: 'CPF Inválido')
-                            .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
-                            .minLength(11)
-                            .maxLength(11)
-                            .valido(value,clearNoNumber: true);
-                      },
-                      onSaved: (cpf) => user.cpf = cpf,
-                    ),
-                    const SizedBox(height: 16,),
                     TextFormField(
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
@@ -194,32 +164,16 @@ class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
                           Icons.home,
                           color: Colors.black,
                         ),
-                        hintText: 'Endereço',
+                        hintText: 'Endereço da Loja',
                         hintStyle: kHintTextStyle,
                       ),
                       enabled: !userManager.loading,
-                      validator: (address) {
-                        if (address.isEmpty)
+                      validator: (endereco) {
+                        if (endereco.isEmpty)
                           return 'Campo obrigatório';
-                        else if (!addressValid(address))
-                          return 'Endereço inválido';
                         return null;
                       },
-                      onSaved: (address) => user.address = Address as Address,
-                    ),
-                    const SizedBox(height: 16,),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
-                        prefixIcon: Icon(
-                          Icons.business,
-                          color: Colors.black,
-                        ),
-                        hintText: 'CNPJ (opcional)',
-                        hintStyle: kHintTextStyle,
-                      ),
-                      enabled: !userManager.loading,
-                      onSaved: (cnpj) => user.cnpj = cnpj,
+                      onSaved: (endereco) => user.endereco = endereco,
                     ),
                     const SizedBox(height: 16,),
                     TextFormField(
@@ -266,27 +220,6 @@ class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
                       onSaved: (pass) => user.confirmPassword = pass,
                     ),
                     const SizedBox(height: 16,),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
-                        prefixIcon: Icon(
-                          Icons.vpn_key,
-                          color: Colors.black,
-                        ),
-                        hintText: 'Chave de Acesso',
-                        hintStyle: kHintTextStyle,
-                      ),
-                      enabled: !userManager.loading,
-                      validator: (key) {
-                        if (key.isEmpty)
-                          return 'Campo obrigatório';
-                        else if (!keyValid(key))
-                          return 'Chave de Acesso inválida';
-                        return null;
-                      },
-                      onSaved: (key) => user.key = key,
-                    ),
-                    const SizedBox(height: 16,),
                     RaisedButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       color: Theme
@@ -314,6 +247,7 @@ class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
                           userManager.signUp(
                               user: user,
                               onSuccess: () {
+                                Navigator.of(context).pop();
                                 Navigator.of(context).pop();
                               },
                               onFail: (e) {
@@ -353,10 +287,19 @@ class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
     );
   }
 
-  bool addressValid(String address) {}
+  String _validarCelular(String value) {
+    String pattern = r'(^[0-9]*$)';
+    RegExp regExp = new RegExp(pattern);
+    if (value.length == 0) {
+      return "Campo obrigatório";
+    } else if(value.length != 10){
+      return "O número deve ter 10 dígitos";
+    }else if (!regExp.hasMatch(value)) {
+      return "O número só deve conter dígitos";
+    }
+    return null;
+  }
 
-  bool keyValid(String key) {}
-  bool telefoneValid(String telefone) {}
 
 }
 

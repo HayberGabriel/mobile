@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lojavirtual/common/bottom_nav_bar.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lojavirtual/common/login_card.dart';
@@ -133,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    labelText: 'E-mail',
+                    labelText: 'Email',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintText: '${userManager.user.email}',
                     hintStyle: TextStyle(color: Colors.black),

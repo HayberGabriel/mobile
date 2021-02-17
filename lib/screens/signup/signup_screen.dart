@@ -5,7 +5,6 @@ import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/signup/signup_seller_screen.dart';
 import 'package:lojavirtual/utilities/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:validadores/Validador.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -161,29 +160,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       validator: _validarCelular,
                       onSaved: (telefone) => user.telefone = telefone,
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
-                        prefixIcon: Icon(
-                          Icons.comment,
-                          color: Colors.black,
-                        ),
-                        hintText: 'CPF',
-                        hintStyle: kHintTextStyle,
-                      ),
-                      enabled: !userManager.loading,
-                      validator: (value) {
-                        // Aqui entram as validações
-                        return Validador()
-                            .add(Validar.CPF, msg: 'CPF Inválido')
-                            .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
-                            .minLength(11)
-                            .maxLength(11)
-                            .valido(value,clearNoNumber: true);
-                      },
-                      onSaved: (cpf) => user.cpf = cpf,
-                    ),
-                    const SizedBox(height: 16,),
                     TextFormField(
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
