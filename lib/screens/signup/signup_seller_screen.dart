@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/helpers/validators.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
-import 'package:lojavirtual/screens/signup/signup_seller_screen.dart';
 import 'package:lojavirtual/utilities/constants.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpSellerScreen extends StatefulWidget {
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _SignUpSellerScreenState createState() => _SignUpSellerScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -35,15 +34,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Theme(
                 data: ThemeData(unselectedWidgetColor: Colors.black),
                 child: Checkbox(
-                  value: _ClientCheck,
+                  value: !_ClientCheck,
                   checkColor: Colors.green,
                   activeColor: Colors.black,
                   onChanged: (value) {
-                    if (_ClientCheck == false) {
-                      setState(() {
-                        _ClientCheck = value;
-                      });
-                    }
+                    setState(() {
+                      _ClientCheck = value;
+                      if(_ClientCheck == true){
+                        Navigator.pop(context);
+                      }
+                    });
                   },
                 ),
               ),
@@ -55,29 +55,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   'Vendedor:',
                   style: kLabelStyle,
                 ),
-
                 Theme(
                   data: ThemeData(unselectedWidgetColor: Colors.black),
                   child: Checkbox(
-                    value: !_ClientCheck,
+                    value: _ClientCheck,
                     checkColor: Colors.green,
                     activeColor: Colors.black,
                     onChanged: (value) {
-                      setState(() {
-                        _ClientCheck = value;
-                        if(_ClientCheck == true){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SignUpSellerScreen()),
-                          );
-                        }
-                      });
+                      if(_ClientCheck == false){
+                        setState(() {
+                          _ClientCheck = value;
+                        });
+                      }
                     },
                   ),
                 ),
               ],
             ),
-
         ],
       ),
     );
@@ -103,6 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: const EdgeInsets.all(16),
                   shrinkWrap: true,
                   children: <Widget>[
+                    SizedBox(height: 40.0),
                     _buildClientCheckbox(),
                     SizedBox(height: 30.0),
                     TextFormField(
@@ -167,6 +162,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       validator: _validarCelular,
                       onSaved: (telefone) => user.telefone = telefone,
                     ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
+                        prefixIcon: Icon(
+                          Icons.home,
+                          color: Colors.black,
+                        ),
+                        hintText: 'Endereço da Loja',
+                        hintStyle: kHintTextStyle,
+                      ),
+                      enabled: !userManager.loading,
+                      validator: (endereco) {
+                        if (endereco.isEmpty)
+                          return 'Campo obrigatório';
+                        return null;
+                      },
+                      onSaved: (endereco) => user.endereco = endereco,
+                    ),
+                    const SizedBox(height: 16,),
                     TextFormField(
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
@@ -239,6 +253,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               user: user,
                               onSuccess: () {
                                 Navigator.of(context).pop();
+                                Navigator.of(context).pop();
                               },
                               onFail: (e) {
                                 scaffoldKey.currentState.showSnackBar(
@@ -276,6 +291,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
   String _validarCelular(String value) {
     String pattern = r'(^[0-9]*$)';
     RegExp regExp = new RegExp(pattern);
@@ -288,6 +304,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
     return null;
   }
+
 
 }
 

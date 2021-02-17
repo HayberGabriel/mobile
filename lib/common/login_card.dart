@@ -5,6 +5,7 @@ class LoginCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
+        elevation: 0,
         margin: const EdgeInsets.all(16),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
@@ -18,7 +19,7 @@ class LoginCard extends StatelessWidget {
                 size: 100,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Text(
                   'Faça login para acessar',
                   textAlign: TextAlign.center,
@@ -35,8 +36,12 @@ class LoginCard extends StatelessWidget {
                 },
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
+                padding: EdgeInsets.all(10.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 child: const Text(
-                    'LOGIN'
+                    'Entrar',style:TextStyle(fontSize: 18),
                 ),
               ),
             ],

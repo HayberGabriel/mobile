@@ -15,12 +15,12 @@ class CartScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Consumer<CartManager>(
-        builder: (_, cartManager, __){
-          if(cartManager.user == null){
+        builder: (_, cartManager, __) {
+          if (cartManager.user == null) {
             return LoginCard();
           }
 
-          if(cartManager.items.isEmpty){
+          if (cartManager.items.isEmpty) {
             return EmptyCard(
               iconData: Icons.remove_shopping_cart,
               title: 'Nenhum produto no carrinho!',
@@ -30,15 +30,17 @@ class CartScreen extends StatelessWidget {
           return ListView(
             children: <Widget>[
               Column(
-                children: cartManager.items.map(
-                        (cartProduct) => CartTile(cartProduct)
-                ).toList(),
+                children: cartManager.items
+                    .map((cartProduct) => CartTile(cartProduct))
+                    .toList(),
               ),
               PriceCard(
                 buttonText: 'Continuar para Entrega',
-                onPressed: cartManager.isCartValid ? (){
-                  Navigator.of(context).pushNamed('/address');
-                } : null,
+                onPressed: cartManager.isCartValid
+                    ? () {
+                        Navigator.of(context).pushNamed('/address');
+                      }
+                    : null,
               ),
             ],
           );

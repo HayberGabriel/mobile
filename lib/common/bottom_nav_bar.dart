@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/page_manager.dart';
 import 'package:provider/provider.dart';
 
-
 class BottomNavBar extends StatelessWidget {
   BottomNavBar({this.page});
 
@@ -13,14 +12,38 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: page,
         onTap: (page) {
           context.read<PageManager>().setPage(page);
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Oi")),
-          BottomNavigationBarItem(icon: Icon(Icons.person_pin), title: Text("Perfil")),
-
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text(
+                "Início",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              title: Text(
+                "Produtos",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.playlist_add_check),
+              title: Text(
+                "Meus Pedidos",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            title: Text(
+              "Lojas",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
         ],
       ),
     );

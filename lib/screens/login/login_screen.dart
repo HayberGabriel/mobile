@@ -1,7 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
+import 'package:flutter/painting.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +28,7 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Center(
         child: Card(
+          elevation: 0,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: formKey,
@@ -82,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                       autocorrect: false,
                       validator: (email){
                         if(!emailValid(email))
-                          return 'E-mail inválido';
+                          return 'Email inválido';
                         return null;
                       },
                     ),
@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                       controller: passController,
                       enabled: !userManager.loading,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 17.0, left: 14.0),
+                        contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
                         prefixIcon: Icon(
                           Icons.lock,
                           color: Colors.black,
@@ -177,11 +177,7 @@ class LoginScreen extends StatelessWidget {
                       disabledColor: Theme.of(context).primaryColor
                           .withAlpha(100),
                       textColor: Colors.white,
-                      child: userManager.loading ?
-                      CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(Colors.white),
-                      ) :
-                      const Text(
+                      child: const Text(
                         'Cadastrar-se',
                         style: TextStyle(
                           letterSpacing: 1.5,

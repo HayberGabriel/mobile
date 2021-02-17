@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/bottom_nav_bar.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/common/empty_card.dart';
 import 'package:lojavirtual/common/login_card.dart';
@@ -36,6 +37,7 @@ class OrdersScreen extends StatelessWidget {
           );
         },
       ),
+      bottomNavigationBar: BottomNavBar(page: 2),
     );
   }
 }

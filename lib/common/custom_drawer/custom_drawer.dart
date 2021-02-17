@@ -18,23 +18,23 @@ class CustomDrawer extends StatelessWidget {
           page: 0,
         ),
         DrawerTile(
-          iconData: Icons.person_pin,
-          title: 'Perfil',
-          page: 1,
-        ),
-        DrawerTile(
           iconData: Icons.list,
           title: 'Produtos',
-          page: 2,
+          page: 1,
         ),
         DrawerTile(
           iconData: Icons.playlist_add_check,
           title: 'Meus Pedidos',
-          page: 3,
+          page: 2,
         ),
         DrawerTile(
           iconData: Icons.store,
           title: 'Lojas',
+          page: 3,
+        ),
+        DrawerTile(
+          iconData: Icons.person_pin,
+          title: 'Perfil',
           page: 4,
         ),
         Consumer<UserManager>(
