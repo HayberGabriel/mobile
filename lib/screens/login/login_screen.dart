@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Center(
         child: Card(
-          elevation: double.infinity,
+          elevation: 0,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: formKey,

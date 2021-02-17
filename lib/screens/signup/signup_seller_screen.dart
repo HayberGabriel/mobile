@@ -23,50 +23,55 @@ class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
     return Container(
       height: 20.0,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            'Cliente:',
-            style: kLabelStyle,
+          Row(
+            children: [
+              Text(
+                'Cliente:',
+                style: kLabelStyle,
+              ),
+              Theme(
+                data: ThemeData(unselectedWidgetColor: Colors.black),
+                child: Checkbox(
+                  value: !_ClientCheck,
+                  checkColor: Colors.green,
+                  activeColor: Colors.black,
+                  onChanged: (value) {
+                    setState(() {
+                      _ClientCheck = value;
+                      if(_ClientCheck == true){
+                        Navigator.pop(context);
+                      }
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.black),
-            child: Checkbox(
-              value: !_ClientCheck,
-              checkColor: Colors.green,
-              activeColor: Colors.black,
-              onChanged: (value) {
-                setState(() {
-                  _ClientCheck = value;
-                  if(_ClientCheck == true){
-                    Navigator.pop(context);
-                  }
-                });
-              },
+            Row(
+              children: [
+                Text(
+                  'Vendedor:',
+                  style: kLabelStyle,
+                ),
+                Theme(
+                  data: ThemeData(unselectedWidgetColor: Colors.black),
+                  child: Checkbox(
+                    value: _ClientCheck,
+                    checkColor: Colors.green,
+                    activeColor: Colors.black,
+                    onChanged: (value) {
+                      if(_ClientCheck == false){
+                        setState(() {
+                          _ClientCheck = value;
+                        });
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 137),
-            child:
-            Text(
-              'Vendedor:',
-              style: kLabelStyle,
-            ),
-          ),
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.black),
-            child: Checkbox(
-              value: _ClientCheck,
-              checkColor: Colors.green,
-              activeColor: Colors.black,
-              onChanged: (value) {
-                if(_ClientCheck == false){
-                  setState(() {
-                    _ClientCheck = value;
-                  });
-                }
-              },
-            ),
-          ),
         ],
       ),
     );
@@ -82,7 +87,7 @@ class _SignUpSellerScreenState extends State<SignUpSellerScreen> {
       ),
       body: Center(
         child: Card(
-          elevation: double.infinity,
+          elevation: 0,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: formKey,
