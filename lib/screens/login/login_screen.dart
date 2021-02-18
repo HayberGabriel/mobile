@@ -192,7 +192,7 @@ class LoginScreen extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: FlatButton(
                   onPressed: (){
-
+                    Navigator.of(context).pushNamed('/reset');
                   },
                   padding: EdgeInsets.zero,
                   child: const Text(

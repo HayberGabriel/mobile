@@ -17,6 +17,7 @@ import 'package:lojavirtual/screens/confirmation/confirmation_screen.dart';
 import 'package:lojavirtual/screens/edit_product/edit_product_screen.dart';
 import 'package:lojavirtual/screens/login/login_screen.dart';
 import 'package:lojavirtual/screens/product/product_screen.dart';
+import 'package:lojavirtual/screens/reset_password/reset_screen.dart';
 import 'package:lojavirtual/screens/select_product/select_product_screen.dart';
 import 'package:lojavirtual/screens/signup/signup_screen.dart';
 import 'package:lojavirtual/screens/signup/signup_seller_screen.dart';
@@ -98,6 +99,10 @@ class MyApp extends StatelessWidget {
             case '/signupseller':
               return MaterialPageRoute(
                   builder: (_) => SignUpSellerScreen()
+              );
+            case '/reset':
+              return MaterialPageRoute(
+                  builder: (_) => ResetScreen()
               );
             case '/product':
               return MaterialPageRoute(
