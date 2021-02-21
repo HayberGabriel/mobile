@@ -57,21 +57,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: SingleChildScrollView(
               padding: EdgeInsets.all(15.0),
               child: Column(children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    ImagePicker.pickImage(source: ImageSource.camera)
-                        .then((file) {
-                      if (file == null) return;
-                      setState(() {
-                        url =
-                        'https://image.freepik.com/vetores-gratis/perfil-de-avatar-de-homem-no-icone-redondo_24640-14044.jpg';
-                      });
-                    });
-                  },
-                  child: Stack(children: <Widget>[
                     Container(
                       width: 140.0,
                       height: 140.0,
@@ -81,46 +69,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         image: DecorationImage(image: NetworkImage('$url')),
                       ),
                     ),
-                    Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                            ),
-                            color: Colors.black,
-                          ),
-                          child: const Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                          ),
-                        )),
-                  ]),
-                ),
-                SizedBox(
+
+
+                const SizedBox(
                   height: 15,
                 ),
                 Form(
                   key: formKey2,
                   child:
                   TextFormField(
-                    controller: _nameController,
-                    decoration: InputDecoration(
+                    initialValue: userManager.user.name,
+                    style: TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                       labelText: 'Nome',
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      hintText: '${userManager.user.name}',
-                      hintStyle: TextStyle(color: Colors.black),
+                      hintText: 'Insira um nome',
+                      hintStyle: TextStyle(color: Colors.grey),
                       icon: Icon(Icons.person_outline),
                     ),
                     enabled: !userManager.loading,
                     validator: (name) {
+                      if(name == userManager.user.name)
+                        return 'Nenhuma mudança feita';
                       if (name.isEmpty)
-                        return 'Nenhuma mudança foi feita';
+                        return 'Campo Vazio';
                       else if (name.trim().split(' ').length <= 1)
                         return 'Preencha um nome válido';
                       else{
@@ -139,10 +111,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: Icon(Icons.alternate_email),
                   ),
                   keyboardType: TextInputType.emailAddress,
-                  enabled: !userManager.loading,
+                  enabled: false,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Telefone',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintText: '(85)99999-9999',
@@ -150,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: Icon(Icons.phone_android),
                   ),
                   keyboardType: TextInputType.phone,
-                  enabled: !userManager.loading,
+                  enabled: false,
                 ),
 
 
