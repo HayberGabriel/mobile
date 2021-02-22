@@ -22,8 +22,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String nome = 'default';
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey2 = GlobalKey<ScaffoldState>();
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +100,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onSaved: (name) => nome = name,
                   ),),
                 TextFormField(
-                  controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -114,10 +111,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   enabled: false,
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Telefone',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintText: '(85)99999-9999',
+                    hintText: '${userManager.user.telefone}',
                     hintStyle: TextStyle(color: Colors.black),
                     icon: Icon(Icons.phone_android),
                   ),
