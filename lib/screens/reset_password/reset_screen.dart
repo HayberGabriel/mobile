@@ -21,7 +21,7 @@ class _ResetScreenState extends State<ResetScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text('Verifique seu e-mail!',
+            child: Text('Verifique seu email!',
               style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
           ),
           Padding(
@@ -36,7 +36,7 @@ class _ResetScreenState extends State<ResetScreen> {
           Padding(padding: const EdgeInsets.only(left: 15,right: 15,bottom: 15),
             child: TextField(
               decoration: InputDecoration(
-                labelText: 'Digite seu E-mail',
+                labelText: 'Digite seu Email',
                 hintStyle: TextStyle(color: Colors.black),
               ),
               onChanged: (value){

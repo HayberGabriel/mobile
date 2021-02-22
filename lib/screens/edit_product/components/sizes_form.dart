@@ -29,7 +29,8 @@ class SizesForm extends StatelessWidget {
                     'Tamanhos',
                     style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w500
+                        color: Colors.black.withOpacity(0.59),
+                        fontWeight: FontWeight.bold
                     ),
                   ),
                 ),
@@ -42,6 +43,14 @@ class SizesForm extends StatelessWidget {
                   },
                 )
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Container(
+                padding: EdgeInsets.only(top: 0),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.withAlpha(70))),
+              ),
             ),
             Column(
               children: state.value.map((size){

@@ -48,30 +48,35 @@ class EditProductScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    TextFormField(
-                      initialValue: product.name,
-                      decoration: const InputDecoration(
-                        hintText: 'Título',
-                        border: InputBorder.none,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 9),
+                      child: TextFormField(
+                        initialValue: product.name,
+                        decoration: const InputDecoration(
+                          hintText: 'Título',
+                          border: InputBorder.none,
+                        ),
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: 27.0,
+                          fontWeight: FontWeight.w800,
+                        ),
+                        validator: (name){
+                          if(name.length < 6)
+                            return 'Título muito curto';
+                          return null;
+                        },
+                        onSaved: (name) => product.name = name,
                       ),
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600
-                      ),
-                      validator: (name){
-                        if(name.length < 6)
-                          return 'Título muito curto';
-                        return null;
-                      },
-                      onSaved: (name) => product.name = name,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
                         'A partir de',
                         style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 13,
+                            color: Colors.black.withOpacity(0.59),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400
                         ),
                       ),
                     ),
@@ -88,13 +93,23 @@ class EditProductScreen extends StatelessWidget {
                       child: Text(
                         'Descrição',
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.59),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey.withAlpha(70))),
                       ),
                     ),
                     TextFormField(
                       initialValue: product.description,
                       style: const TextStyle(
-                          fontSize: 16
+                          fontWeight: FontWeight.w400
                       ),
                       decoration: const InputDecoration(
                         hintText: 'Descrição',
