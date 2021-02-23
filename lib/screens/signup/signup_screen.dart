@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/helpers/validators.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
-import 'package:lojavirtual/screens/signup/signup_seller_screen.dart';
 import 'package:lojavirtual/utilities/constants.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -21,71 +20,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   final User user = User();
-
-  bool _ClientCheck = true;
-
-  Widget _buildClientCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
-            children: [
-              Text(
-                'Cliente:',
-                style: kLabelStyle,
-              ),
-              Theme(
-                data: ThemeData(unselectedWidgetColor: Colors.black),
-                child: Checkbox(
-                  value: _ClientCheck,
-                  checkColor: Colors.green,
-                  activeColor: Colors.black,
-                  onChanged: (value) {
-                    if (_ClientCheck == false) {
-                      setState(() {
-                        _ClientCheck = value;
-                      });
-                    }
-                  },
-                ),
-              ),
-            ],
-          ),
-            Row(
-              children: [
-                Text(
-                  'Vendedor:',
-                  style: kLabelStyle,
-                ),
-
-                Theme(
-                  data: ThemeData(unselectedWidgetColor: Colors.black),
-                  child: Checkbox(
-                    value: !_ClientCheck,
-                    checkColor: Colors.green,
-                    activeColor: Colors.black,
-                    onChanged: (value) {
-                      setState(() {
-                        _ClientCheck = value;
-                        if(_ClientCheck == true){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SignUpSellerScreen()),
-                          );
-                        }
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +41,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: const EdgeInsets.all(16),
                   shrinkWrap: true,
                   children: <Widget>[
-                    _buildClientCheckbox(),
-                    SizedBox(height: 30.0),
                     TextFormField(
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 15.0, left: 14.0),
