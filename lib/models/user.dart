@@ -39,6 +39,9 @@ class User {
   DocumentReference get firestoreRef =>
     Firestore.instance.document('users/$id');
 
+  CollectionReference get favoriteReference =>
+   firestoreRef.collection('favorites');
+
   CollectionReference get cartReference =>
     firestoreRef.collection('cart');
 

@@ -29,6 +29,12 @@ class HomeScreen extends StatelessWidget {
                 ),
                 actions: <Widget>[
                   IconButton(
+                      icon: Icon(Icons.favorite), 
+                      color: Colors.white,
+                      onPressed: (){
+                        Navigator.of(context).pushNamed('/favorite');
+                      }),
+                  IconButton(
                     icon: Icon(Icons.shopping_cart),
                     color: Colors.white,
                     onPressed: () => Navigator.of(context).pushNamed('/cart'),

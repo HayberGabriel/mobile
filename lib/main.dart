@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/admin_orders_manager.dart';
 import 'package:lojavirtual/models/admin_users_manager.dart';
 import 'package:lojavirtual/models/cart_manager.dart';
+import 'package:lojavirtual/models/favorite_manager.dart';
 import 'package:lojavirtual/models/home_manager.dart';
 import 'package:lojavirtual/models/order.dart';
 import 'package:lojavirtual/models/orders_manager.dart';
@@ -15,6 +16,7 @@ import 'package:lojavirtual/screens/cart/cart_screen.dart';
 import 'package:lojavirtual/screens/checkout/checkout_screen.dart';
 import 'package:lojavirtual/screens/confirmation/confirmation_screen.dart';
 import 'package:lojavirtual/screens/edit_product/edit_product_screen.dart';
+import 'package:lojavirtual/screens/favorite/favorite_screen.dart';
 import 'package:lojavirtual/screens/login/login_screen.dart';
 import 'package:lojavirtual/screens/product/product_screen.dart';
 import 'package:lojavirtual/screens/reset_password/reset_screen.dart';
@@ -46,6 +48,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => StoresManager(),
+        ),
+        ChangeNotifierProxyProvider<UserManager, FavoriteManager>(
+            create: (_) => FavoriteManager(),
+          lazy: false,
+          update: (_,userManager, favoriteManager) =>
+          favoriteManager..updateUser(userManager),
         ),
         ChangeNotifierProxyProvider<UserManager, CartManager>(
           create: (_) => CartManager(),
@@ -109,6 +117,10 @@ class MyApp extends StatelessWidget {
                   builder: (_) => ProductScreen(
                     settings.arguments as Product
                   )
+              );
+            case '/favorite':
+              return MaterialPageRoute(
+                  builder: (_) => FavoriteScreen()
               );
             case '/cart':
               return MaterialPageRoute(
