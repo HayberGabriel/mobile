@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lojavirtual/common/login_card.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/reset_password/reset_screen.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -15,11 +15,16 @@ class ProfileScreen extends StatefulWidget {
 }
 final User user = User();
 class _ProfileScreenState extends State<ProfileScreen> {
+  final MaskTextInputFormatter phoneFormatter = MaskTextInputFormatter(
+      mask: '(##)#####-####',filter: {'#': RegExp('[0-9]')}
+  );
   String url =
       'https://w7.pngwing.com/pngs/860/503/png-transparent-computer-icons-person-pion-black-desktop-wallpaper-share-icon.png';
   bool isPasswordTextField = true;
   bool showPassword = true;
   String nome = 'default';
+  String phone;
+  final GlobalKey<FormState> formKey3 = GlobalKey<FormState>();
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey2 = GlobalKey<ScaffoldState>();
 
@@ -98,7 +103,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       }
                     },
                     onSaved: (name) => nome = name,
-                  ),),
+                  ),
+
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -110,16 +117,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   keyboardType: TextInputType.emailAddress,
                   enabled: false,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Telefone',
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintText: '${userManager.user.telefone}',
-                    hintStyle: TextStyle(color: Colors.black),
-                    icon: Icon(Icons.phone_android),
+                Form(
+                  key:formKey3,
+                  child: TextFormField(
+                    initialValue: userManager.user.telefone,
+                    decoration: const InputDecoration(
+                      labelText: 'Telefone',
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: 'Insira um telefone',
+                      hintStyle: TextStyle(color: Colors.black),
+                      icon: Icon(Icons.phone_android),
+                    ),
+                    keyboardType: TextInputType.phone,
+                    enabled: true,
+                    inputFormatters: [phoneFormatter],
+                    validator: (telefone){
+                      if(telefone == userManager.user.telefone)
+                        return 'Nenhuma mudança feita';
+                      if (telefone.isEmpty)
+                        return 'Campo Vazio';
+                      else if(telefone.length < 13)
+                        return 'Número inválido';
+                      else{
+                        return null;
+                      }
+                    },
+                    onSaved: (telefone) => phone = telefone,
                   ),
-                  keyboardType: TextInputType.phone,
-                  enabled: false,
                 ),
 
 
@@ -137,11 +161,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
                     onPressed:userManager.loading ? null : () {
+                      if (formKey3.currentState.validate()) {
+                        formKey3.currentState.save();
+                        scaffoldKey2.currentState.showSnackBar(
+                          const SnackBar(
+                            content: Text('Dados Salvos com Sucesso'),
+                            backgroundColor: Colors.black,
+                          ),
+                        );
+                        Firestore.instance.document('users/${userManager.user.id}').updateData(
+                            {'telefone': '$phone'});
+                        setState(() {
+                          userManager.user.telefone = phone;
+                        });
+                      }
                       if (formKey2.currentState.validate()) {
                         formKey2.currentState.save();
                         scaffoldKey2.currentState.showSnackBar(
                           const SnackBar(
-                            content: Text('Nome Salvo com Sucesso'),
+                            content: Text('Dados Salvos com Sucesso'),
                             backgroundColor: Colors.black,
                           ),
                         );
@@ -166,10 +204,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ],
                                   ));*/
                       }
-                      debugPrint('${userManager.user.id}');
+                      debugPrint(userManager.user.name);
+                      debugPrint(userManager.user.telefone);
                     },
                     child: const Text(
-                      'Atualizar Nome',
+                      'Atualizar Dados',
                       style: TextStyle(
                         letterSpacing: 1.5,
                         fontSize: 18.0,

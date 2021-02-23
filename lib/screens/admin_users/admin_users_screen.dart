@@ -29,7 +29,7 @@ class AdminUsersScreen extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  adminUsersManager.users[index].email,
+                  '${adminUsersManager.users[index].email}\n${adminUsersManager.users[index].telefone}',
                   style: TextStyle(
                     color: Colors.black,
                   ),
