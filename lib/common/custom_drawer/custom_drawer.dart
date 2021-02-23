@@ -39,7 +39,7 @@ class CustomDrawer extends StatelessWidget {
         ),
         DrawerTile(
           iconData: Icons.favorite,
-          title: 'Desejos',
+          title: 'Favoritos',
           page: 5,
         ),
         Consumer<UserManager>(
