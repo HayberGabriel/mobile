@@ -7,12 +7,12 @@ import 'package:lojavirtual/models/page_manager.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/admin_orders/admin_orders_screen.dart';
 import 'package:lojavirtual/screens/admin_users/admin_users_screen.dart';
+import 'package:lojavirtual/screens/favorite/favorite_screen.dart';
 import 'package:lojavirtual/screens/home/home_screen.dart';
 import 'package:lojavirtual/screens/orders/orders_screen.dart';
 import 'package:lojavirtual/screens/products/products_screen.dart';
 import 'package:lojavirtual/screens/profile/profile_screen.dart';
 import 'package:lojavirtual/screens/stores/stores_screen.dart';
-import 'package:lojavirtual/screens/wishes/wishes_screen.dart';
 import 'package:provider/provider.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -81,6 +81,7 @@ class _BaseScreenState extends State<BaseScreen> {
               OrdersScreen(),
               StoresScreen(),
               ProfileScreen(),
+              FavoriteScreen(),
               if (userManager.adminEnabled) ...[
                 AdminUsersScreen(),
                 AdminOrdersScreen(),

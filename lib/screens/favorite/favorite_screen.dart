@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/common/empty_card.dart';
 import 'package:lojavirtual/common/login_card.dart';
 import 'package:lojavirtual/models/favorite_manager.dart';
@@ -6,16 +7,22 @@ import 'package:provider/provider.dart';
 
 import 'components/favorite_tile.dart';
 
-class FavoriteScreen extends StatelessWidget {
+class FavoriteScreen extends StatefulWidget {
+  @override
+  _FavoriteScreenState createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
         title: Text('Favoritos'),
         centerTitle: true,
       ),
       body: Consumer<FavoriteManager>(
-        builder: (_,favoriteManager,__){
+        builder: (_, favoriteManager, __) {
           if (favoriteManager.user == null) {
             return LoginCard();
           }
@@ -28,9 +35,9 @@ class FavoriteScreen extends StatelessWidget {
           }
 
           return Column(
-            children: favoriteManager.items.map(
-                    (favoriteProduct) => FavoriteTile(favoriteProduct)
-            ).toList(),
+            children: favoriteManager.items
+                .map((favoriteProduct) => FavoriteTile(favoriteProduct))
+                .toList(),
           );
         },
       ),

@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                       icon: Icon(Icons.favorite), 
                       color: Colors.white,
                       onPressed: (){
-                        Navigator.of(context).pushNamed('/favorite');
+                        context.read<PageManager>().setPage(5);
                       }),
                   IconButton(
                     icon: Icon(Icons.shopping_cart),
