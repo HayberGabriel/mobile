@@ -29,7 +29,7 @@ class AdminUsersScreen extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  adminUsersManager.users[index].email,
+                  '${adminUsersManager.users[index].email}\n${adminUsersManager.users[index].telefone}',
                   style: TextStyle(
                     color: Colors.black,
                   ),
@@ -38,7 +38,7 @@ class AdminUsersScreen extends StatelessWidget {
                   context.read<AdminOrdersManager>().setUserFilter(
                     adminUsersManager.users[index]
                   );
-                  context.read<PageManager>().setPage(6);
+                  context.read<PageManager>().setPage(7);
                 },
               );
             },
