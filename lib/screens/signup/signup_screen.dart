@@ -4,6 +4,7 @@ import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/signup/signup_seller_screen.dart';
 import 'package:lojavirtual/utilities/constants.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -13,6 +14,9 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
+  final MaskTextInputFormatter phoneFormatter = MaskTextInputFormatter(
+      mask: '(##)#####-####',filter: {'#': RegExp('[0-9]')}
+  );
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -163,8 +167,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       keyboardType: TextInputType.phone,
                       enabled: !userManager.loading,
-                      maxLength: 10,
+                      maxLength: 14,
                       validator: _validarCelular,
+                      inputFormatters: [phoneFormatter],
                       onSaved: (telefone) => user.telefone = telefone,
                     ),
                     TextFormField(
@@ -277,14 +282,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
   String _validarCelular(String value) {
-    String pattern = r'(^[0-9]*$)';
-    RegExp regExp = new RegExp(pattern);
     if (value.length == 0) {
       return "Campo obrigatório";
-    } else if(value.length != 10){
-      return "O número deve ter 10 dígitos";
-    }else if (!regExp.hasMatch(value)) {
-      return "O número só deve conter dígitos";
+    } else if(value.length < 13){
+      return "Númuero Inválido";
     }
     return null;
   }

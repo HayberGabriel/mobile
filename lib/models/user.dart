@@ -55,6 +55,7 @@ class User {
     return {
       'name': name,
       'email': email,
+      'telefone': telefone,
       if(address != null)
         'address': address.toMap(),
       if(cpf != null)
