@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/Splash/splash_screen.dart';
 import 'package:lojavirtual/models/admin_orders_manager.dart';
 import 'package:lojavirtual/models/admin_users_manager.dart';
 import 'package:lojavirtual/models/cart_manager.dart';
@@ -82,6 +83,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        //home: SplashScreen(),
         title: 'Nome da Loja',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -95,6 +97,10 @@ class MyApp extends StatelessWidget {
         ),
         onGenerateRoute: (settings){
           switch(settings.name){
+            case '/':
+              return MaterialPageRoute(
+                builder: (_) => SplashScreen()
+              );
             case '/login':
               return MaterialPageRoute(
                   builder: (_) => LoginScreen()

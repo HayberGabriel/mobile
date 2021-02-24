@@ -17,7 +17,7 @@ class CheckoutScreen extends StatelessWidget {
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-          title: const Text('Pagamento'),
+          title: const Text('Finalizar Pedido'),
           centerTitle: true,
         ),
         body: Consumer<CheckoutManager>(
