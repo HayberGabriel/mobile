@@ -133,10 +133,7 @@ class StoreCard extends StatelessWidget {
                     color: primaryColor,
                     onTap: openMap,
                   ),
-                ],
-              ),
-              Row(
-                children: [
+                 Padding(padding: EdgeInsets.symmetric(horizontal: 4)),
                   Text(
                     "Contato:",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -148,7 +145,9 @@ class StoreCard extends StatelessWidget {
                     onTap: openMap,
                   ),
                 ],
-              )
+              ),
+
+
             ])
           ],
         ),

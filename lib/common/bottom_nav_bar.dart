@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/page_manager.dart';
 import 'package:provider/provider.dart';
 
+import 'package:lojavirtual/models/page_manager.dart';
+import 'package:provider/provider.dart';
+
 class BottomNavBar extends StatelessWidget {
   BottomNavBar({this.page});
 
@@ -10,6 +13,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int curPage = context.watch<PageManager>().page;
     return Material(
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -19,29 +23,61 @@ class BottomNavBar extends StatelessWidget {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home,
+                  color: curPage == 0
+                      ? Color.fromARGB(255, 4, 125, 141)
+                      : Colors.black),
               title: Text(
                 "Início",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: curPage == 0
+                        ? Color.fromARGB(255, 4, 125, 141)
+                        : Colors.black),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.list,
+                  color: curPage == 1
+                      ? Color.fromARGB(255, 4, 125, 141)
+                      : Colors.black),
               title: Text(
                 "Produtos",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: curPage == 1
+                        ? Color.fromARGB(255, 4, 125, 141)
+                        : Colors.black),
               )),
           BottomNavigationBarItem(
-            icon: Icon(Icons.playlist_add_check),
+            icon: Icon(Icons.playlist_add_check,
+                color: curPage == 2
+                    ? Color.fromARGB(255, 4, 125, 141)
+                    : Colors.black),
             title: Text(
               "Meus Pedidos",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: curPage == 2
+                      ? Color.fromARGB(255, 4, 125, 141)
+                      : Colors.black),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.store),
+            icon: Icon(Icons.store,
+                color: curPage == 3
+                    ? Color.fromARGB(255, 4, 125, 141)
+                    : Colors.black),
             title: Text(
               "Lojas",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: curPage == 3
+                      ? Color.fromARGB(255, 4, 125, 141)
+                      : Colors.black),
             ),
           ),
         ],
