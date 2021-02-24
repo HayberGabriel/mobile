@@ -165,7 +165,6 @@ class CheckoutManager extends ChangeNotifier {
       loading = false;
       return;
     }
-    // TODO: PROCESSAR PAGAMENTO
     final orderId = await _getOrderId();
     final order = Order.fromCartManager(cartManager);
     order.orderId = orderId.toString();

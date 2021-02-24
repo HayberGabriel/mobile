@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lojavirtual/Splash/splash_screen.dart';
 import 'package:lojavirtual/models/admin_orders_manager.dart';
 import 'package:lojavirtual/models/admin_users_manager.dart';
 import 'package:lojavirtual/models/cart_manager.dart';
@@ -23,6 +22,7 @@ import 'package:lojavirtual/screens/product/product_screen.dart';
 import 'package:lojavirtual/screens/reset_password/reset_screen.dart';
 import 'package:lojavirtual/screens/select_product/select_product_screen.dart';
 import 'package:lojavirtual/screens/signup/signup_screen.dart';
+import 'package:lojavirtual/screens/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -83,7 +83,6 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        //home: SplashScreen(),
         title: 'Nome da Loja',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
