@@ -228,10 +228,10 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
+                        spacing: 6,
+                        runSpacing: 1,
                         children: product.sizes.map((s) {
                           return SizeWidget(size: s);
                         }).toList(),
