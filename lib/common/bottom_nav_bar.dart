@@ -31,6 +31,7 @@ class BottomNavBar extends StatelessWidget {
                 "Início",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
+
                     color: curPage == 0
                         ? Color.fromARGB(255, 4, 125, 141)
                         : Colors.black),
@@ -44,6 +45,7 @@ class BottomNavBar extends StatelessWidget {
                 "Produtos",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
+
                     color: curPage == 1
                         ? Color.fromARGB(255, 4, 125, 141)
                         : Colors.black),
@@ -57,6 +59,7 @@ class BottomNavBar extends StatelessWidget {
               "Meus Pedidos",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
+
                   color: curPage == 2
                       ? Color.fromARGB(255, 4, 125, 141)
                       : Colors.black),
@@ -71,6 +74,7 @@ class BottomNavBar extends StatelessWidget {
               "Lojas",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
+
                   color: curPage == 3
                       ? Color.fromARGB(255, 4, 125, 141)
                       : Colors.black),
