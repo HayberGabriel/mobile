@@ -22,26 +22,26 @@ class BottomNavBar extends StatelessWidget {
               icon: Icon(Icons.home),
               title: Text(
                 "Início",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               )),
           BottomNavigationBarItem(
               icon: Icon(Icons.list),
               title: Text(
                 "Produtos",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.playlist_add_check),
-              title: Text(
-                "Meus Pedidos",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+            icon: Icon(Icons.playlist_add_check),
+            title: Text(
+              "Meus Pedidos",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.store),
             title: Text(
               "Lojas",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
           ),
         ],
