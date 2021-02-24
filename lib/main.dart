@@ -22,7 +22,6 @@ import 'package:lojavirtual/screens/product/product_screen.dart';
 import 'package:lojavirtual/screens/reset_password/reset_screen.dart';
 import 'package:lojavirtual/screens/select_product/select_product_screen.dart';
 import 'package:lojavirtual/screens/signup/signup_screen.dart';
-import 'package:lojavirtual/screens/signup/signup_seller_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -103,10 +102,6 @@ class MyApp extends StatelessWidget {
             case '/signup':
               return MaterialPageRoute(
                   builder: (_) => SignUpScreen()
-              );
-            case '/signupseller':
-              return MaterialPageRoute(
-                  builder: (_) => SignUpSellerScreen()
               );
             case '/reset':
               return MaterialPageRoute(

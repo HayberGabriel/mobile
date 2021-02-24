@@ -24,7 +24,6 @@ class _ProductScreenState extends State<ProductScreen> {
   _ProductScreenState(this.product);
 
   final Product product;
-  bool favorite = false;
   bool notification = false;
   String size;
 
@@ -255,13 +254,13 @@ class _ProductScreenState extends State<ProductScreen> {
                                     color: Colors.transparent,
                                     alignment: Alignment.center,
                                     child: IconButton(
-                                        icon: Icon(favorite
+                                        icon: Icon(context.read<FavoriteManager>().heart(product)
                                             ? Icons.favorite
                                             : Icons.favorite_border),
                                         color: Colors.black,
                                         iconSize: 42,
                                         onPressed: userManager.isLoggedIn ? () {
-                                          if (favorite == false) {
+                                          if (context.read<FavoriteManager>().heart(product) == false) {
                                             context.read<FavoriteManager>().addToFavorite(product);
                                             const snack = SnackBar(
                                               content: Text(
@@ -277,7 +276,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                           } else {
                                             const snack = SnackBar(
                                               content: Text(
-                                                'Peça removida dos favoritos',
+                                                'Essa peça já está nos seus favoritos',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                 ),
@@ -289,7 +288,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                 .showSnackBar(snack);
                                           }
                                           setState(() {
-                                            favorite = !favorite;
+                                            context.read<FavoriteManager>().heart(product);
                                           });
                                         } : null),
                                   ),

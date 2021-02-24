@@ -47,6 +47,16 @@ class FavoriteManager extends ChangeNotifier{
     notifyListeners();
   }
 
+  bool heart(Product product){
+    try {
+      items.firstWhere((u) => u.stackable(product));
+      return true;
+    }catch (e){
+      return false;
+    }
+
+  }
+
   void _onItemUpdated(){
     for(int i = 0; i<items.length; i++){
       final favoriteProduct = items[i];
