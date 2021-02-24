@@ -296,6 +296,9 @@ class _ProductScreenState extends State<ProductScreen> {
                               }),
                               Expanded(
                                 child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0)
+                                  ),
                                   onPressed: product.selectedSize != null
                                       ? () {
                                           if (userManager.isLoggedIn) {
@@ -363,8 +366,11 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                           );}
                         ),
-                        const Expanded(
+                        Expanded(
                           child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)
+                            ),
                             onPressed: null,
                             child: Text('Indisponível',style: const TextStyle(fontSize: 20),),
 

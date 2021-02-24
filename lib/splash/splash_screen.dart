@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(
-      Duration(seconds: 4), (){
+      Duration(seconds: 3), (){
       Navigator.of(context).pushNamed('/home');
     }
     );
