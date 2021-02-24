@@ -19,7 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       mask: '(##)#####-####',filter: {'#': RegExp('[0-9]')}
   );
   String url =
-      'https://w7.pngwing.com/pngs/860/503/png-transparent-computer-icons-person-pion-black-desktop-wallpaper-share-icon.png';
+      'https://static.thenounproject.com/png/630740-200.png';
   bool isPasswordTextField = true;
   bool showPassword = true;
   String nome = 'default';
