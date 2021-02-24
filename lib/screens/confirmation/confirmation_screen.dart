@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/common/order/order_product_tile.dart';
 import 'package:lojavirtual/models/order.dart';
 
+
 class ConfirmationScreen extends StatelessWidget {
 
   const ConfirmationScreen(this.order);
@@ -12,7 +13,7 @@ class ConfirmationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pedido Confirmado'),
+        title: const Text('Confirmação de Pedido'),
         centerTitle: true,
       ),
       body: Center(
@@ -29,12 +30,12 @@ class ConfirmationScreen extends StatelessWidget {
                     Text(
                       order.formattedId,
                       style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w800,
                         color: Theme.of(context).primaryColor,
                       ),
                     ),
                     Text(
-                      'R\$ ${order.price.toStringAsFixed(2)}',
+                      'Total: R\$ ${order.price.toStringAsFixed(2)}',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
@@ -48,6 +49,38 @@ class ConfirmationScreen extends StatelessWidget {
                 children: order.items.map((e){
                   return OrderProductTile(e);
                 }).toList(),
+              ),
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                color: Colors.black,
+                child: Text('Confirmar Pedido', style: TextStyle(fontSize: 18, color: Colors.white),),
+                onPressed: (){
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => AlertDialog(
+                      title: Text('Pedido Confirmado!'),
+                      content: Text('Acompanhe seu pedido na aba Meus Pedidos.'),
+                      actions: [
+                        FlatButton(
+                          child: Text('Ok'),
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                          },
+                        ),
+
+                        /*FlatButton(
+                          child: Text('Cancelar'),
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                          },
+                        )*/
+                      ],
+                    ),
+                  );
+                },
               )
             ],
           ),
@@ -56,3 +89,29 @@ class ConfirmationScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+/*AlertDialog(
+                    content: SingleChildScrollView(
+                      child: ListBody(
+                        children: [
+                          Text('Seu pedido foi confirmado!'),
+                          Text('Acompanhe o progresso do pedido em Meus Pedidos'),
+                        ],
+                      ),
+                    ),
+                    actions: [
+                      TextButton(child: Text('Ok'),
+                        onPressed: (){
+                        Navigator.of(context).pop();
+                      },
+                      )
+                    ],
+                  );*/

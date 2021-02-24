@@ -58,6 +58,8 @@ dependencies:
   flushbar: ^1.10.4
   share: ^0.6.5+4
   validadores: ^0.0.1
+  flutter_animated_dialog: ^1.2.0
+  dialog: ^0.7.2+1
 
 dev_dependencies:
   flutter_test:

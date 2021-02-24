@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/cart_manager.dart';
 import 'package:provider/provider.dart';
@@ -69,6 +70,9 @@ class PriceCard extends StatelessWidget {
             ),
             const SizedBox(height: 8,),
             RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)
+              ),
               color: Theme.of(context).primaryColor,
               disabledColor: Theme.of(context).primaryColor.withAlpha(100),
               textColor: Colors.white,

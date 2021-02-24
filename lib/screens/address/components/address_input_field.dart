@@ -28,7 +28,7 @@ class AddressInputField extends StatelessWidget {
             decoration: const InputDecoration(
               isDense: true,
               labelText: 'Rua/Avenida',
-              hintText: 'Av. Brasil',
+              hintText: 'Ex: Av. Brasil',
             ),
             validator: emptyValidator,
             onSaved: (t) => address.street = t,
@@ -42,7 +42,7 @@ class AddressInputField extends StatelessWidget {
                   decoration: const InputDecoration(
                       isDense: true,
                       labelText: 'Número',
-                      hintText: '123',
+                      hintText: 'Ex: 123',
                   ),
                   inputFormatters: [
                     WhitelistingTextInputFormatter.digitsOnly,
@@ -75,7 +75,7 @@ class AddressInputField extends StatelessWidget {
             decoration: const InputDecoration(
               isDense: true,
               labelText: 'Bairro',
-              hintText: 'Guanabara',
+              hintText: 'Ex: Guanabara',
             ),
             validator: emptyValidator,
             onSaved: (t) => address.district = t,
@@ -90,7 +90,7 @@ class AddressInputField extends StatelessWidget {
                   decoration: const InputDecoration(
                     isDense: true,
                     labelText: 'Cidade',
-                    hintText: 'Campinas',
+                    hintText: 'Ex: Campinas',
                   ),
                   validator: emptyValidator,
                   onSaved: (t) => address.city = t,
@@ -108,7 +108,7 @@ class AddressInputField extends StatelessWidget {
                   decoration: const InputDecoration(
                     isDense: true,
                     labelText: 'UF',
-                    hintText: 'SP',
+                    hintText: 'Ex: SP',
                     counterText: '',
                   ),
                   maxLength: 2,
@@ -132,6 +132,9 @@ class AddressInputField extends StatelessWidget {
               backgroundColor: Colors.transparent,
             ),
           RaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0)
+            ),
             color: primaryColor,
             disabledColor: primaryColor.withAlpha(100),
             textColor: Colors.white,

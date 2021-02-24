@@ -49,7 +49,7 @@ class OrderTile extends StatelessWidget {
                   Colors.red : primaryColor,
                 fontSize: 14
               ),
-            )
+            ),
           ],
         ),
         children: <Widget>[
@@ -81,7 +81,8 @@ class OrderTile extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: order.advance,
-                    child: const Text('Avançar'),
+                    child: const Text('Avançar',
+                    style: TextStyle(color: Colors.green),),
                   ),
                   FlatButton(
                     onPressed: (){

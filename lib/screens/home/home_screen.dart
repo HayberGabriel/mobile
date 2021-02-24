@@ -40,19 +40,19 @@ class HomeScreen extends StatelessWidget {
                     onPressed: () => Navigator.of(context).pushNamed('/cart'),
                   ),
                   Consumer2<UserManager, HomeManager>(
-                    builder: (_, userManager, homeManager, __) {
-                      if (userManager.adminEnabled && !homeManager.loading) {
-                        if (homeManager.editing) {
+                    builder: (_, userManager, homeManager, __){
+                      if(userManager.adminEnabled && !homeManager.loading) {
+                        if(homeManager.editing){
                           return PopupMenuButton(
-                            onSelected: (e) {
-                              if (e == 'Salvar') {
+                            onSelected: (e){
+                              if(e == 'Salvar'){
                                 homeManager.saveEditing();
                               } else {
                                 homeManager.discardEditing();
                               }
                             },
-                            itemBuilder: (_) {
-                              return ['Salvar', 'Descartar'].map((e) {
+                            itemBuilder: (_){
+                              return ['Salvar', 'Descartar'].map((e){
                                 return PopupMenuItem(
                                   value: e,
                                   child: Text(e),
@@ -66,15 +66,14 @@ class HomeScreen extends StatelessWidget {
                             onPressed: homeManager.enterEditing,
                           );
                         }
-                      } else
-                        return Container();
+                      } else return Container();
                     },
                   ),
                 ],
               ),
               Consumer<HomeManager>(
-                builder: (_, homeManager, __) {
-                  if (homeManager.loading) {
+                builder: (_, homeManager, __){
+                  if(homeManager.loading){
                     return SliverToBoxAdapter(
                       child: LinearProgressIndicator(
                         valueColor: AlwaysStoppedAnimation(Colors.white),
@@ -83,19 +82,20 @@ class HomeScreen extends StatelessWidget {
                     );
                   }
 
-                  final List<Widget> children =
-                      homeManager.sections.map<Widget>((section) {
-                    switch (section.type) {
-                      case 'List':
-                        return SectionList(section);
-                      case 'Staggered':
-                        return SectionStaggered(section);
-                      default:
-                        return Container();
+                  final List<Widget> children = homeManager.sections.map<Widget>(
+                    (section) {
+                      switch(section.type){
+                        case 'List':
+                          return SectionList(section);
+                        case 'Staggered':
+                          return SectionStaggered(section);
+                        default:
+                          return Container();
+                      }
                     }
-                  }).toList();
+                  ).toList();
 
-                  if (homeManager.editing)
+                  if(homeManager.editing)
                     children.add(AddSectionWidget(homeManager));
 
                   return SliverList(
