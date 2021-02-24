@@ -133,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                           );
                         }
                       },
-                      padding: EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(12.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
@@ -141,15 +141,22 @@ class LoginScreen extends StatelessWidget {
                       disabledColor: Theme.of(context).primaryColor
                           .withAlpha(100),
                       textColor: Colors.white,
-                      child: userManager.loading ?
-                      CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(Colors.white),
-                      ) :
-                      const Text(
-                        'Entrar',
-                        style: TextStyle(
-                          letterSpacing: 1.5,
-                          fontSize: 18.0,
+                      child: Center(
+                        child: userManager.loading ?
+                        SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 3.0,
+                            valueColor: AlwaysStoppedAnimation(Colors.white),
+                          ),
+                        ) :
+                        const Text(
+                          'Entrar',
+                          style: TextStyle(
+                            letterSpacing: 1.5,
+                            fontSize: 18.0,
+                          ),
                         ),
                       ),
                     ),
@@ -169,7 +176,7 @@ class LoginScreen extends StatelessWidget {
                       onPressed: (){
                         Navigator.of(context).pushReplacementNamed('/signup');
                       },
-                      padding: EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(12.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),

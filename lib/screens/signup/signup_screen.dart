@@ -188,13 +188,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           );
                         }
                       },
-                      padding: EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(12.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       child: userManager.loading ?
-                      CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                      SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(Colors.white),
+                        ),
                       )
                           : const Text(
                         'Cadastrar-se',

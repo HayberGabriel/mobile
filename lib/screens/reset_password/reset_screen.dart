@@ -51,6 +51,9 @@ class _ResetScreenState extends State<ResetScreen> {
             auth.sendPasswordResetEmail(email: _email);
             Navigator.of(context).pop();
           },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
             color: Theme.of(context).primaryColor,
             child: Text('Enviar Pedido'),
             textColor: Colors.white,
