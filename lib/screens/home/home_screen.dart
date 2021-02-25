@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: Colors.black,
                 flexibleSpace: const FlexibleSpaceBar(
                   title: Text('Nome da Loja'),
-                  centerTitle: true,
+                  centerTitle: false,
                 ),
                 actions: <Widget>[
                   IconButton(

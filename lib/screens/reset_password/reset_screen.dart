@@ -28,7 +28,7 @@ class _ResetScreenState extends State<ResetScreen> {
             padding: const  EdgeInsets.all(15),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [ Text('Enviaremos um pedido de redefinição de senha\npara você!',
+                children: [ Text('Enviaremos um link de redefinição de senha\npara você!',
                   ),
                 ]
             ),
@@ -49,7 +49,23 @@ class _ResetScreenState extends State<ResetScreen> {
           ),
           RaisedButton(onPressed: (){
             auth.sendPasswordResetEmail(email: _email);
-            Navigator.of(context).pop();
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) => AlertDialog(
+                title: Text('Email Enviado!'),
+                content: Text('Verifique seu email para fazer alteração de senha.'),
+                actions: [
+                  FlatButton(
+                    child: Text('Ok'),
+                    onPressed: (){
+                      Navigator.of(context)
+                          .popUntil((route) => route.settings.name == '/home');
+                    },
+                  ),
+                ],
+              ),
+            );
           },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
