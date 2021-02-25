@@ -28,7 +28,7 @@ class _ResetScreenState extends State<ResetScreen> {
             padding: const  EdgeInsets.all(15),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [ Text('Enviaremos um pedido de redefinição de senha para você!',
+                children: [ Text('Enviaremos um pedido de redefinição de senha\npara você!',
                   ),
                 ]
             ),
