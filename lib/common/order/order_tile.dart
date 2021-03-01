@@ -13,6 +13,20 @@ class OrderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color getcolor(){
+      if (order.status == Status.canceled){
+        return Colors.red;
+      }
+      else if(order.status == Status.preparing){
+        return Colors.orange;
+      }
+      else if(order.status == Status.transporting){
+        return Colors.lightBlue;
+      }
+      else{
+        return Colors.green;
+      }
+    }
     final primaryColor = Theme.of(context).primaryColor;
 
     return Card(
@@ -45,8 +59,7 @@ class OrderTile extends StatelessWidget {
               order.statusText,
               style: TextStyle(
                 fontWeight: FontWeight.w400,
-                color: order.status == Status.canceled ?
-                  Colors.red : primaryColor,
+                color: getcolor(),
                 fontSize: 14
               ),
             ),
