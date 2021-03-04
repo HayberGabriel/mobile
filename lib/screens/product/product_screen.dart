@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,8 +52,8 @@ class _ProductScreenState extends State<ProductScreen> {
                       icon: Icon(Icons.share),
                       onPressed: () {
                         Share.share(
-                            'Confira já a ${product.name},a partir de R\$${product.basePrice.toStringAsFixed(2)} '
-                            'no app MODA ONLINE,descontos exclusivos',
+                            'Confira já a ${product.name}, a partir de R\$${product.basePrice.toStringAsFixed(2)} '
+                            'no app MODA ONLINE, descontos exclusivos !',
                             subject: 'Baixe já o nosso app');
                       });
                 }
