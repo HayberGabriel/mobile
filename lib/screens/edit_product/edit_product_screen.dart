@@ -130,6 +130,9 @@ class EditProductScreen extends StatelessWidget {
                         return SizedBox(
                           height: 44,
                           child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                        ),
                             onPressed: !product.loading ? () async {
                               if(formKey.currentState.validate()){
                                 formKey.currentState.save();

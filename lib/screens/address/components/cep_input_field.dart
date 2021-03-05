@@ -35,7 +35,7 @@ class _CepInputFieldState extends State<CepInputField> {
             decoration: const InputDecoration(
               isDense: true,
               labelText: 'CEP',
-              hintText: '12.345-678'
+              hintText: 'Ex: 12.345-678'
             ),
             inputFormatters: [
               WhitelistingTextInputFormatter.digitsOnly,
@@ -56,6 +56,9 @@ class _CepInputFieldState extends State<CepInputField> {
               backgroundColor: Colors.transparent,
             ),
           RaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0)
+            ),
             onPressed: !cartManager.loading ? () async {
               if(Form.of(context).validate()){
                 try {
@@ -87,7 +90,8 @@ class _CepInputFieldState extends State<CepInputField> {
                 'CEP: ${widget.address.zipCode}',
                 style: TextStyle(
                   color: primaryColor,
-                  fontWeight: FontWeight.w600
+                  fontWeight: FontWeight.w600,
+                  //decoration: TextDecoration.underline,
                 ),
               ),
             ),

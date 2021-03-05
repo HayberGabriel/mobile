@@ -16,42 +16,41 @@ class SizeWidget extends StatelessWidget {
 
     Color color;
     if(!size.hasStock)
-      color = Colors.red.withAlpha(50);
+      color = Colors.red.withAlpha(70);
     else if(selected)
       color = Theme.of(context).primaryColor;
     else
       color = Colors.grey;
 
-    return GestureDetector(
-      onTap: (){
+    return RaisedButton(
+      color: color,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0)
+      ),
+      onPressed: (){
         if(size.hasStock){
           product.selectedSize = size;
         }
       },
       child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: color,
-                width: 1
-          ),
-        ),
+
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              color: color,
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),
               child: Text(
                 size.name,
-                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
+                style: TextStyle(color: Colors.white,fontWeight: FontWeight.w900,),
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+
+              padding: const EdgeInsets.symmetric(horizontal: 2,vertical: 4),
               child: Text(
                 'R\$${size.price.toStringAsFixed(2)}',
                 style: TextStyle(
-                  color: color,
+                  color: Colors.white,
                 ),
               ),
             )

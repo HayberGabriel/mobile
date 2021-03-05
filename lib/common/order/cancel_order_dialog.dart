@@ -29,7 +29,7 @@ class _CancelOrderDialogState extends State<CancelOrderDialog> {
             Text(
               loading
                 ? 'Cancelando...'
-                : 'Esta ação não poderá ser defeita!'
+                : 'Esta ação não poderá ser desfeita!'
             ),
             if(error != null)
               Padding(

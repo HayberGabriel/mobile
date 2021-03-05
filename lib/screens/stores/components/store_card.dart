@@ -5,7 +5,6 @@ import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class StoreCard extends StatelessWidget {
-
   const StoreCard(this.store);
 
   final Store store;
@@ -14,8 +13,8 @@ class StoreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Colors.black;
 
-    Color colorForStatus(StoreStatus status){
-      switch(status){
+    Color colorForStatus(StoreStatus status) {
+      switch (status) {
         case StoreStatus.closed:
           return Colors.red;
         case StoreStatus.open:
@@ -27,24 +26,22 @@ class StoreCard extends StatelessWidget {
       }
     }
 
-    void showError(){
-      Scaffold.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Esta função não está disponível neste dispositivo'),
-            backgroundColor: Colors.red,
-          )
-      );
+    void showError() {
+      Scaffold.of(context).showSnackBar(const SnackBar(
+        content: Text('Esta função não está disponível neste dispositivo'),
+        backgroundColor: Colors.red,
+      ));
     }
 
     Future<void> openPhone() async {
-      if(await canLaunch('tel:${store.cleanPhone}')){
+      if (await canLaunch('tel:${store.cleanPhone}')) {
         launch('tel:${store.cleanPhone}');
       } else {
         showError();
       }
     }
 
-    Future<void > openMap() async {
+    Future<void> openMap() async {
       try {
         final availableMaps = await MapLauncher.installedMaps;
 
@@ -55,11 +52,12 @@ class StoreCard extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    for(final map in availableMaps)
+                    for (final map in availableMaps)
                       ListTile(
-                        onTap: (){
+                        onTap: () {
                           map.showMarker(
-                            coords: Coords(store.address.lat, store.address.long),
+                            coords:
+                                Coords(store.address.lat, store.address.long),
                             title: store.name,
                             description: store.addressText,
                           );
@@ -75,100 +73,82 @@ class StoreCard extends StatelessWidget {
                   ],
                 ),
               );
-            }
-        );
-      } catch (e){
+            });
+      } catch (e) {
         showError();
       }
     }
 
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       clipBehavior: Clip.antiAlias,
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 160,
-            child: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                Image.network(
-                  store.image,
-                  fit: BoxFit.cover,
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(8)
-                      )
-                    ),
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      store.statusText,
-                      style: TextStyle(
-                        color: colorForStatus(store.status),
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              store.name,
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontSize: 22,
+              ),
             ),
-          ),
-          Container(
-            height: 140,
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        store.name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 17,
-                        ),
-                      ),
-                      Text(
-                        store.addressText,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                      Text(
-                        store.openingText,
-                        style: const TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    CustomIconButton(
-                      iconData: Icons.map,
-                      color: primaryColor,
-                      onTap: openMap,
-                    ),
-                    CustomIconButton(
-                      iconData: Icons.phone,
-                      color: primaryColor,
-                      onTap: openPhone,
-                    ),
-                  ],
-                )
-              ],
+            Text(
+              store.statusText,
+              style: TextStyle(
+                color: colorForStatus(store.status),
+                fontWeight: FontWeight.w800,
+                fontSize: 18,
+              ),
             ),
-          )
-        ],
+            Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+            Text(
+              "Horário de Funcionamento",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
+            Padding(padding: EdgeInsets.symmetric(vertical: 4)),
+            Text(
+              store.openingText,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            Padding(padding: EdgeInsets.symmetric(vertical: 4)),
+            Column(children: [
+              Row(
+                children: [
+                  Text(
+                    "Local:",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  CustomIconButton(
+                    size: 25,
+                    iconData: Icons.map,
+                    color: primaryColor,
+                    onTap: openMap,
+                  ),
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 6)),
+                  Text(
+                    "Contato:",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  CustomIconButton(
+                    size: 25,
+                    iconData: Icons.phone,
+                    color: primaryColor,
+                    onTap: openPhone,
+                  ),
+                ],
+              ),
+            ])
+          ],
+        ),
       ),
     );
   }

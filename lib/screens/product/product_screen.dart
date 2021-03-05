@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,8 +52,8 @@ class _ProductScreenState extends State<ProductScreen> {
                       icon: Icon(Icons.share),
                       onPressed: () {
                         Share.share(
-                            'Confira já a ${product.name},a partir de R\$${product.basePrice.toStringAsFixed(2)} '
-                            'no app MODA ONLINE,descontos exclusivos',
+                            'Confira já a ${product.name}, a partir de R\$${product.basePrice.toStringAsFixed(2)} '
+                            'no app MODA ONLINE, descontos exclusivos !',
                             subject: 'Baixe já o nosso app');
                       });
                 }
@@ -228,10 +226,10 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
+                        spacing: 6,
+                        runSpacing: 1,
                         children: product.sizes.map((s) {
                           return SizeWidget(size: s);
                         }).toList(),
@@ -296,6 +294,9 @@ class _ProductScreenState extends State<ProductScreen> {
                               }),
                               Expanded(
                                 child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0)
+                                  ),
                                   onPressed: product.selectedSize != null
                                       ? () {
                                           if (userManager.isLoggedIn) {
@@ -363,8 +364,11 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                           );}
                         ),
-                        const Expanded(
+                        Expanded(
                           child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)
+                            ),
                             onPressed: null,
                             child: Text('Indisponível',style: const TextStyle(fontSize: 20),),
 

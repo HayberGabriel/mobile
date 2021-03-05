@@ -55,8 +55,8 @@ class Store {
   String get openingText {
     return
       'Seg-Sex: ${formattedPeriod(opening['monfri'])}\n'
-      'Sab: ${formattedPeriod(opening['saturday'])}\n'
-      'Dom: ${formattedPeriod(opening['sunday'])}';
+      'Sab: ${formattedPeriod(opening['sat'])}\n'
+      'Dom: ${formattedPeriod(opening['sun'])}';
   }
 
   String formattedPeriod(Map<String, TimeOfDay> period){

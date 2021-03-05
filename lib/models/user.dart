@@ -6,14 +6,13 @@ import 'package:lojavirtual/models/address.dart';
 
 class User {
 
-  User({this.email, this.password, this.name, this.id, this.telefone, this.endereco});
+  User({this.email, this.password, this.name, this.id, this.telefone});
 
   User.fromDocument(DocumentSnapshot document){
     id = document.documentID;
     name = document.data['name'] as String;
     email = document.data['email'] as String;
     telefone = document.data['telefone'] as String;
-    endereco = document.data['endereço'] as String;
     if(document.data.containsKey('address')){
       address = Address.fromMap(
           document.data['address'] as Map<String, dynamic>);
@@ -24,7 +23,6 @@ class User {
   String name;
   String email;
   String telefone;
-  String endereco;
   String cpf;
   String password;
 
@@ -64,10 +62,6 @@ class User {
       if(cpf != null)
         'cpf': cpf
     };
-  }
-  void setEndereco(String endereco){
-    this.endereco = endereco;
-    saveData();
   }
 
   void setAddress(Address address){
