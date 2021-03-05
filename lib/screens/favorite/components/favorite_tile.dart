@@ -66,6 +66,7 @@ class FavoriteTile extends StatelessWidget {
                               ],
                             ),
                           ),
+                          if(favoriteProduct.product.hasStock)
                           Padding(
                             padding: const EdgeInsets.only(bottom:8.0),
                             child: Wrap(
@@ -76,6 +77,17 @@ class FavoriteTile extends StatelessWidget {
                               }).toList(),
                             ),
                           ),
+                          if(!favoriteProduct.product.hasStock)
+                            const Padding(
+                              padding: EdgeInsets.only(top: 4),
+                              child: Text(
+                                'Sem estoque',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 15
+                                ),
+                              ),
+                            )
                         ],
                       ),
                     ),
