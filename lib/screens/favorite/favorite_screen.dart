@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/bottom_nav_bar.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/common/empty_card.dart';
 import 'package:lojavirtual/common/login_card.dart';
 import 'package:lojavirtual/models/favorite_manager.dart';
+import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
 
 import 'components/favorite_tile.dart';
@@ -40,6 +42,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 .toList(),
           );
         },
+      ),
+      bottomNavigationBar: Consumer<UserManager>(
+          builder: (_, userManager, __) {
+            if (userManager.adminEnabled) {
+              return BottomNavBar(page: 0);
+            } else {
+              return BottomNavBar(page: 0);
+            }
+          }
       ),
     );
   }

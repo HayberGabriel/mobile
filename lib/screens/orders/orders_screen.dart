@@ -5,39 +5,48 @@ import 'package:lojavirtual/common/empty_card.dart';
 import 'package:lojavirtual/common/login_card.dart';
 import 'package:lojavirtual/common/order/order_tile.dart';
 import 'package:lojavirtual/models/orders_manager.dart';
+import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
 
 class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
-      appBar: AppBar(
-        title: const Text('Meus Pedidos'),
-        centerTitle: true,
-      ),
-      body: Consumer<OrdersManager>(
-        builder: (_, ordersManager, __){
-          if(ordersManager.user == null){
-            return LoginCard();
-          }
-          if(ordersManager.orders.isEmpty){
-            return EmptyCard(
-              title: 'Nenhum pedido encontrado!',
-              iconData: Icons.border_clear,
-            );
-          }
-          return ListView.builder(
-            itemCount: ordersManager.orders.length,
-            itemBuilder: (_, index){
-              return OrderTile(
-                ordersManager.orders.reversed.toList()[index]
+        drawer: CustomDrawer(),
+        appBar: AppBar(
+          title: const Text('Meus Pedidos'),
+          centerTitle: true,
+        ),
+        body: Consumer<OrdersManager>(
+          builder: (_, ordersManager, __){
+            if(ordersManager.user == null){
+              return LoginCard();
+            }
+            if(ordersManager.orders.isEmpty){
+              return EmptyCard(
+                title: 'Nenhum pedido encontrado!',
+                iconData: Icons.border_clear,
               );
             }
-          );
-        },
-      ),
-      bottomNavigationBar: BottomNavBar(page: 2),
+            return ListView.builder(
+                itemCount: ordersManager.orders.length,
+                itemBuilder: (_, index){
+                  return OrderTile(
+                      ordersManager.orders.reversed.toList()[index]
+                  );
+                }
+            );
+          },
+        ),
+        bottomNavigationBar: Consumer<UserManager>(
+            builder: (_, userManager, __) {
+              if (userManager.adminEnabled) {
+                return BottomNavBar(page: 0);
+              } else {
+                return BottomNavBar(page: 2);
+              }
+            }
+        )
     );
   }
 }

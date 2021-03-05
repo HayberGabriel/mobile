@@ -28,12 +28,23 @@ class HomeScreen extends StatelessWidget {
                   centerTitle: false,
                 ),
                 actions: <Widget>[
-                  IconButton(
-                      icon: Icon(Icons.favorite), 
-                      color: Colors.white,
-                      onPressed: (){
-                        context.read<PageManager>().setPage(5);
-                      }),
+                  Consumer<UserManager>(builder: (_, userManager, __) {
+                    if (userManager.adminEnabled) {
+                      return IconButton(
+                          icon: Icon(Icons.favorite),
+                          color: Colors.white,
+                          onPressed: (){
+                            context.read<PageManager>().setPage(7);
+                          });
+                    } else {
+                      return IconButton(
+                          icon: Icon(Icons.favorite),
+                          color: Colors.white,
+                          onPressed: (){
+                            context.read<PageManager>().setPage(5);
+                          });
+                    }
+                  }),
                   IconButton(
                     icon: Icon(Icons.shopping_cart),
                     color: Colors.white,

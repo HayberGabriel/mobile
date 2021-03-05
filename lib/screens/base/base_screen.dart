@@ -78,14 +78,14 @@ class _BaseScreenState extends State<BaseScreen> {
             children: <Widget>[
               HomeScreen(),
               ProductsScreen(),
+              if (userManager.adminEnabled) ...[
+                AdminUsersScreen(),
+                AdminOrdersScreen(),
+              ],
               OrdersScreen(),
               StoresScreen(),
               ProfileScreen(),
               FavoriteScreen(),
-              if (userManager.adminEnabled) ...[
-                AdminUsersScreen(),
-                AdminOrdersScreen(),
-              ]
             ],
           );
         },

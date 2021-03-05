@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/bottom_nav_bar.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/common/custom_icon_button.dart';
 import 'package:lojavirtual/common/empty_card.dart';
 import 'package:lojavirtual/common/order/order_tile.dart';
 import 'package:lojavirtual/models/admin_orders_manager.dart';
 import 'package:lojavirtual/models/order.dart';
+import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -21,7 +23,7 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
-        title: const Text('Todos os Pedidos'),
+        title: const Text('Pedidos'),
         centerTitle: true,
       ),
       body: Consumer<AdminOrdersManager>(
@@ -127,6 +129,7 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
           );
         },
       ),
+      bottomNavigationBar: BottomNavBar(page: 3),
     );
   }
 }

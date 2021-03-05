@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/bottom_nav_bar.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/common/login_card.dart';
 import 'package:lojavirtual/models/user.dart';
@@ -13,13 +14,13 @@ class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
+
 final User user = User();
+
 class _ProfileScreenState extends State<ProfileScreen> {
   final MaskTextInputFormatter phoneFormatter = MaskTextInputFormatter(
-      mask: '(##)#####-####',filter: {'#': RegExp('[0-9]')}
-  );
-  String url =
-      'https://static.thenounproject.com/png/630740-200.png';
+      mask: '(##)#####-####', filter: {'#': RegExp('[0-9]')});
+  String url = 'https://static.thenounproject.com/png/630740-200.png';
   bool isPasswordTextField = true;
   bool showPassword = true;
   String nome = 'default';
@@ -39,15 +40,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           'Perfil',
           style: TextStyle(color: Colors.white),
         ),
-        /* if(showsnackbar == true) {
-                        const snack = SnackBar(content: Text(
-                        'Dados salvos com sucesso!',
-                        style: TextStyle(color: Colors.white),),
-                        backgroundColor: Colors.black,
-                        duration: Duration(seconds: 2),
-                      );
-                      Scaffold.of(context).showSnackBar(snack);
-                      }*/
       ),
       body: Consumer<UserManager>(builder: (_, userManager, __) {
         if (userManager.user == null) {
@@ -56,6 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
+            FocusScope.of(context).unfocus();
           },
           child: SingleChildScrollView(
               padding: EdgeInsets.all(15.0),
@@ -63,24 +56,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                    Container(
-                      width: 140.0,
-                      height: 140.0,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 2),
-                        shape: BoxShape.circle,
-                        image: DecorationImage(image: NetworkImage('$url')),
-                      ),
-                    ),
-
-
+                Container(
+                  width: 140.0,
+                  height: 140.0,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 2),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(image: NetworkImage('$url')),
+                  ),
+                ),
                 const SizedBox(
                   height: 15,
                 ),
                 Form(
                   key: formKey2,
-                  child:
-                  TextFormField(
+                  child: TextFormField(
                     initialValue: userManager.user.name,
                     style: TextStyle(color: Colors.black),
                     decoration: const InputDecoration(
@@ -92,19 +82,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     enabled: !userManager.loading,
                     validator: (name) {
-                      if(name == userManager.user.name)
+                      if (name == userManager.user.name)
                         return 'Nenhuma mudança feita';
                       if (name.isEmpty)
                         return 'Campo Vazio';
                       else if (name.trim().split(' ').length <= 1)
                         return 'Preencha um nome válido';
-                      else{
+                      else {
                         return null;
                       }
                     },
                     onSaved: (name) => nome = name,
                   ),
-
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -118,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   enabled: false,
                 ),
                 Form(
-                  key:formKey3,
+                  key: formKey3,
                   child: TextFormField(
                     initialValue: userManager.user.telefone,
                     decoration: const InputDecoration(
@@ -131,22 +120,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     keyboardType: TextInputType.phone,
                     enabled: true,
                     inputFormatters: [phoneFormatter],
-                    validator: (telefone){
-                      if(telefone == userManager.user.telefone)
+                    validator: (telefone) {
+                      if (telefone == userManager.user.telefone)
                         return 'Nenhuma mudança feita';
                       if (telefone.isEmpty)
                         return 'Campo Vazio';
-                      else if(telefone.length < 13)
+                      else if (telefone.length < 13)
                         return 'Número inválido';
-                      else{
+                      else {
                         return null;
                       }
                     },
                     onSaved: (telefone) => phone = telefone,
                   ),
                 ),
-
-
                 const SizedBox(
                   height: 30,
                 ),
@@ -160,7 +147,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
-                    onPressed:userManager.loading ? null : () {
+                    onPressed: userManager.loading
+                        ? null
+                        : () {
                       if (formKey3.currentState.validate()) {
                         formKey3.currentState.save();
                         scaffoldKey2.currentState.showSnackBar(
@@ -169,8 +158,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             backgroundColor: Colors.black,
                           ),
                         );
-                        Firestore.instance.document('users/${userManager.user.id}').updateData(
-                            {'telefone': '$phone'});
+                        Firestore.instance
+                            .document('users/${userManager.user.id}')
+                            .updateData({'telefone': '$phone'});
                         setState(() {
                           userManager.user.telefone = phone;
                         });
@@ -183,26 +173,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             backgroundColor: Colors.black,
                           ),
                         );
-                        Firestore.instance.document('users/${userManager.user.id}').updateData(
-                            {'name': '$nome'}
-                        );
+                        Firestore.instance
+                            .document('users/${userManager.user.id}')
+                            .updateData({'name': '$nome'});
                         setState(() {
                           userManager.user.name = nome;
                         });
-                        /*showDialog(
-                                  context: context,
-                                  builder: (context)=> AlertDialog(
-                                    title: Text('Tem certeza que deseja alterar seus dados?'),
-                                    content: Text('A ação não poderá ser desfeita'),
-                                    actions: [
-                                      FlatButton(onPressed: (){
-
-                                        Navigator.pop(context);
-                                      },
-                                          child: Text('Sim')),
-                                      FlatButton(onPressed: (){Navigator.pop(context);}, child: Text('Cancelar'))
-                                    ],
-                                  ));*/
                       }
                       debugPrint(userManager.user.name);
                       debugPrint(userManager.user.telefone);
@@ -229,8 +205,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
-                    onPressed:() {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ResetScreen()));
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ResetScreen()));
                     },
                     child: const Text(
                       'Redefinir Senha',
@@ -247,6 +224,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ])),
         );
       }),
+      bottomNavigationBar: Consumer<UserManager>(
+          builder: (_, userManager, __) {
+            if (userManager.adminEnabled) {
+              return BottomNavBar(page: 0);
+            } else {
+              return BottomNavBar(page: 0);
+            }
+          }
+      ),
     );
   }
 }
