@@ -574,13 +574,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
-  statusbar:
-    dependency: "direct main"
-    description:
-      name: statusbar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
   stream_channel:
     dependency: transitive
     description:
