@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,14 +107,18 @@ class _ProductScreenState extends State<ProductScreen> {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Text(
-                            product.name,
-                            style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 27.0,
-                              fontWeight: FontWeight.w800,
+                        SizedBox(
+                          width: 250,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: AutoSizeText(
+                              product.name,
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 27,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              maxLines: 2,
                             ),
                           ),
                         ),
