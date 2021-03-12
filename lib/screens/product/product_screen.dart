@@ -340,31 +340,42 @@ class _ProductScreenState extends State<ProductScreen> {
                               color: Colors.transparent,
                               alignment: Alignment.center,
                               child: IconButton(
-                                  icon: Icon(notification ? Icons.notifications_active : Icons.notifications_none),
+                                  icon: Icon(context.read<FavoriteManager>().heart(product)
+                                      ? Icons.favorite
+                                      : Icons.favorite_border),
                                   color: Colors.black,
                                   iconSize: 42,
                                   onPressed: userManager.isLoggedIn ? () {
-                                    if(notification == false){
-                                      const snack = SnackBar(content: Text(
-                                        'Você será notificado quando a peça estiver disponível',
-                                        style: TextStyle(color: Colors.white),),
+                                    if (context.read<FavoriteManager>().heart(product) == false) {
+                                      context.read<FavoriteManager>().addToFavorite(product);
+                                      const snack = SnackBar(
+                                        content: Text(
+                                          'Peça adicionada aos favoritos',
+                                          style: TextStyle(
+                                              color: Colors.white),
+                                        ),
                                         backgroundColor: Colors.black,
                                         duration: Duration(seconds: 2),
                                       );
-                                      Scaffold.of(context).showSnackBar(snack);
-                                    }else {
-                                      const snack = SnackBar(content: Text(
-                                        'Você não será mais notificado',
-                                        style: TextStyle(color: Colors.white),),
+                                      Scaffold.of(context)
+                                          .showSnackBar(snack);
+                                    } else {
+                                      const snack = SnackBar(
+                                        content: Text(
+                                          'Essa peça já está nos seus favoritos',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                         backgroundColor: Colors.black,
                                         duration: Duration(seconds: 2),
                                       );
-                                      Scaffold.of(context).showSnackBar(snack);
+                                      Scaffold.of(context)
+                                          .showSnackBar(snack);
                                     }
                                     setState(() {
-                                      notification = !notification;
-                                    }
-                                    );
+                                      context.read<FavoriteManager>().heart(product);
+                                    });
                                   } : null),
                             ),
                           );}
