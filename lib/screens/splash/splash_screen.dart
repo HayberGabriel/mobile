@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(
       Duration(seconds: 4), (){
-      Navigator.of(context).popAndPushNamed('/home');
+      Navigator.of(context).pop('/home');
     }
     );
 

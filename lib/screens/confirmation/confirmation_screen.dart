@@ -67,7 +67,7 @@ class ConfirmationScreen extends StatelessWidget {
                         FlatButton(
                           child: Text('Ok'),
                           onPressed: (){
-                            Navigator.of(context).popAndPushNamed('/home');
+                            Navigator.of(context).pop('/home');
                           },
                         ),
 
