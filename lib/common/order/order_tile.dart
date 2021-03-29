@@ -3,6 +3,7 @@ import 'package:lojavirtual/common/order/cancel_order_dialog.dart';
 import 'package:lojavirtual/common/order/export_address_dialog.dart';
 import 'package:lojavirtual/common/order/order_product_tile.dart';
 import 'package:lojavirtual/models/order.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrderTile extends StatelessWidget {
 
@@ -10,6 +11,10 @@ class OrderTile extends StatelessWidget {
 
   final Order order;
   final bool showControls;
+
+  Future<void> openPhone(String x) async {
+    await launch('tel:${x}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +101,12 @@ class OrderTile extends StatelessWidget {
                     onPressed: order.advance,
                     child: const Text('Avançar',
                     style: TextStyle(color: Colors.green),),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.phone),
+                    onPressed: () {
+                      openPhone(order.userPhone);
+                    },
                   ),
                   FlatButton(
                     onPressed: (){

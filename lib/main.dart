@@ -84,8 +84,6 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        //home: SplashScreen(),
-        title: 'Nome da Loja',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor:  Colors.black,

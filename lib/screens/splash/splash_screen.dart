@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(
-      Duration(seconds: 4), (){
+      Duration(seconds: 2), (){
       Navigator.of(context).popAndPushNamed('/home');
     }
     );
@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             SizedBox(
               height: 200.0,
-              child: Image.network('https://pbs.twimg.com/media/EtrK_AXWgAEcZ8m?format=png&name=small'),
+              child: Image.asset("assets/logo.png")
             ),
             Padding(
               padding: EdgeInsets.all(16.0),
